@@ -12,14 +12,16 @@
       </div>
       <div class="menuView">
         <div class="routerButton">
-          <div>
-            <el-button>首页</el-button>
+          <div style="margin-right: 5px">
+            <el-button text :bg="true">首页</el-button>
           </div>
           <div>
-            <el-button>创建作业</el-button>
+            <el-button text :bg="false">创建作业</el-button>
           </div>
         </div>
-        <div></div>
+        <div>
+          <el-button>登录/注册</el-button>
+        </div>
       </div>
     </nav>
     <router-view></router-view>
@@ -69,6 +71,7 @@ export default defineComponent({
     }
 
     .menuView {
+      flex: 1;
       @include flexCenterSpaceBetween();
 
       .routerButton {

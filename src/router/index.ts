@@ -3,7 +3,7 @@ import {
   createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+// import HomeView from "../views/HomeView.vue";
 import Layout from "../views/layout/index.vue";
 
 export const customRoutes: RouteRecordRaw[] = [
@@ -15,7 +15,7 @@ export const customRoutes: RouteRecordRaw[] = [
       {
         path: "/home",
         name: "home",
-        component: HomeView,
+        component: () => import("@/views/home/index.vue"),
       },
     ],
   },

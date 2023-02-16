@@ -53,6 +53,7 @@ export default defineComponent({
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
+  background-color: #fff;
 
   .layoutNav {
     background-color: rgb(244 244 245 / var(--tw-bg-opacity));

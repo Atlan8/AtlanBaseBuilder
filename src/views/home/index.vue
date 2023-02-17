@@ -8,9 +8,13 @@
 import { useResize } from "@/hooks/resize/useResize";
 import { useDeviceStore } from "@/stores/device";
 import { storeToRefs } from "pinia";
+import { getData } from "./data";
+import { useErrorCatch } from "@/hooks/errorCatch/useErrorCatch";
 const store = useDeviceStore();
 const { deviceType } = storeToRefs(store);
 useResize();
+useErrorCatch();
+getData();
 </script>
 
 <style lang="scss" scoped>

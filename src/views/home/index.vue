@@ -1,10 +1,17 @@
 <template>
   <div class="homeView">
-    <el-card class="card"> 我是卡片 </el-card>
+    <el-card class="card"> 我是卡片{{ deviceType }} </el-card>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useResize } from "@/hooks/resize/useResize";
+import { useDeviceStore } from "@/stores/device";
+import { storeToRefs } from "pinia";
+const store = useDeviceStore();
+const { deviceType } = storeToRefs(store);
+useResize();
+</script>
 
 <style lang="scss" scoped>
 @mixin flexCenter {

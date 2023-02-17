@@ -9,6 +9,8 @@ import { onBeforeMount, onBeforeUnmount } from "vue";
 export const useErrorCatch = () => {
   onBeforeMount(() => {
     window.addEventListener("unhandledrejection", (e: Event) => {
+      // 阻止事件冒泡，在这里处理
+      e.stopPropagation();
       console.log("---> 报错信息", e);
       // todo 上报异常监控
     });

@@ -2,9 +2,10 @@ export interface PostCommentReplyInfo {
   id: number;
   username: string;
   replyId: number;
-  replyUsername: string;
+  replyUsername?: string;
   datetime: string;
   postId: number;
+  content: string;
 }
 
 export interface PostCommentInfo {

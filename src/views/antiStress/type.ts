@@ -16,7 +16,7 @@ export interface PostCommentInfo {
   device: string; // 来自
   ipAddress: string; // ip属地
   floor: string; // 帖子评论楼层
-  cover?: string; // 帖子评论封面
+  cover?: string[]; // 帖子评论封面
   reply?: PostCommentReplyInfo[]; // 评论的回复
 }
 

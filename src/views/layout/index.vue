@@ -38,7 +38,7 @@ const { navHeight } = storeToRefs(store);
 
 .layoutView {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   background-color: #fff;
 

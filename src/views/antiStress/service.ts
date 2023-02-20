@@ -15,7 +15,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "1楼",
-        cover: ["./assets/faker.jpeg"],
+        cover: ["./src/views/antiStress/assets/faker.jpeg"],
         reply: [],
       },
       {
@@ -153,7 +153,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "4楼",
-        cover: ["./assets/xiaohu.jpeg"],
+        cover: ["./src/views/antiStress/assets/xiaohu.jpeg"],
         reply: [
           {
             id: 1,
@@ -222,7 +222,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "9楼",
-        cover: ["./assets/zuoshou.jpeg"],
+        cover: ["./src/views/antiStress/assets/zuoshou.jpeg"],
         reply: [
           {
             id: 1,
@@ -291,7 +291,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "21楼",
-        cover: ["./assets/angle.jpeg"],
+        cover: ["./src/views/antiStress/assets/angle.jpeg"],
         reply: [
           {
             id: 1,
@@ -360,7 +360,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "26楼",
-        cover: ["./assets/qingtian.jpeg"],
+        cover: ["./src/views/antiStress/assets/qingtian.jpeg"],
         reply: [
           {
             id: 1,
@@ -421,7 +421,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "32楼",
-        cover: ["./assets/doinb.jpeg"],
+        cover: ["./src/views/antiStress/assets/doinb.jpeg"],
         reply: [
           {
             id: 1,
@@ -494,7 +494,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "42楼",
-        cover: ["./assets/showmaker.jpeg"],
+        cover: ["./src/views/antiStress/assets/showmaker.jpeg"],
         reply: [
           {
             id: 1,
@@ -574,7 +574,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "45楼",
-        cover: ["./assets/youji.jpeg"],
+        cover: ["./src/views/antiStress/assets/youji.jpeg"],
         reply: [
           {
             id: 1,
@@ -636,7 +636,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "49楼",
-        cover: ["./assets/tian.jpeg"],
+        cover: ["./src/views/antiStress/assets/tian.jpeg"],
         reply: [
           {
             id: 1,
@@ -697,7 +697,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "52楼",
-        cover: ["./assets/jiejie.jpeg"],
+        cover: ["./src/views/antiStress/assets/jiejie.jpeg"],
         reply: [
           {
             id: 1,
@@ -768,7 +768,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "57楼",
-        cover: ["./assets/wei.jpeg"],
+        cover: ["./src/views/antiStress/assets/wei.jpeg"],
         reply: [
           {
             id: 1,
@@ -819,9 +819,9 @@ export const useService = (): PostInfo => {
         ipAddress: "广东", // ip属地
         floor: "61楼",
         cover: [
-          "./assets/ruler_1.jpeg",
-          "./assets/ruler_2.jpeg",
-          "./assets/ruler_3.jpeg",
+          "./src/views/antiStress/assets/ruler_1.jpeg",
+          "./src/views/antiStress/assets/ruler_2.jpeg",
+          "./src/views/antiStress/assets/ruler_3.jpeg",
         ],
         reply: [
           {
@@ -893,7 +893,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "69楼",
-        cover: ["./assets/jacklove.jpeg"],
+        cover: ["./src/views/antiStress/assets/jacklove.jpeg"],
         reply: [
           {
             id: 1,
@@ -994,7 +994,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "169楼",
-        cover: ["./assets/gua.jpeg"],
+        cover: ["./src/views/antiStress/assets/gua.jpeg"],
         reply: [
           {
             id: 1,
@@ -1065,7 +1065,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "219楼",
-        cover: ["./assets/deng.jpeg"],
+        cover: ["./src/views/antiStress/assets/deng.jpeg"],
         reply: [
           {
             id: 1,
@@ -1126,7 +1126,10 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "282楼",
-        cover: ["./assets/kjiangjun_1.jpeg", "./assets/kjiangjun_2.jpeg"],
+        cover: [
+          "./src/views/antiStress/assets/kjiangjun_1.jpeg",
+          "./src/views/antiStress/assets/kjiangjun_2.jpeg",
+        ],
         reply: [
           {
             id: 1,
@@ -1188,7 +1191,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "296楼",
-        cover: ["./assets/meyko.jpeg"],
+        cover: ["./src/views/antiStress/assets/meyko.jpeg"],
         reply: [
           {
             id: 1,
@@ -1259,7 +1262,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "312楼",
-        cover: ["./assets/ming.jpeg"],
+        cover: ["./src/views/antiStress/assets/ming.jpeg"],
         reply: [
           {
             id: 1,
@@ -1339,7 +1342,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "339楼",
-        cover: ["./assets/lqs.jpeg"],
+        cover: ["./src/views/antiStress/assets/lqs.jpeg"],
         reply: [
           {
             id: 1,
@@ -1400,7 +1403,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "410楼",
-        cover: ["./assets/abu.jpeg"],
+        cover: ["./src/views/antiStress/assets/abu.jpeg"],
         reply: [
           {
             id: 1,
@@ -1462,7 +1465,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "552楼",
-        cover: ["./assets/clearlove.jpeg"],
+        cover: ["./src/views/antiStress/assets/clearlove.jpeg"],
         reply: [
           {
             id: 1,
@@ -1539,7 +1542,7 @@ export const useService = (): PostInfo => {
         device: "Android客户端", // 来自
         ipAddress: "广东", // ip属地
         floor: "557楼",
-        cover: ["./assets/zhukai.jpeg"],
+        cover: ["./src/views/antiStress/assets/zhukai.jpeg"],
         reply: [
           {
             id: 1,

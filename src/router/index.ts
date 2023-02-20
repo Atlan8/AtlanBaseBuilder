@@ -17,6 +17,11 @@ export const customRoutes: RouteRecordRaw[] = [
         name: "home",
         component: () => import("@/views/home/index.vue"),
       },
+      {
+        path: "/antiStress",
+        name: "antiStress",
+        component: () => import("@/views/antiStress/index.vue"),
+      },
     ],
   },
   {

@@ -1,29 +1,7 @@
 <template>
   <div class="layoutView">
-    <nav class="layoutNav shadow">
-      <div class="logoView">
-        <div class="titleView">
-          <div class="title">MAA Copilot</div>
-          <el-tag color="rgba(200, 118, 25, 0.1)" style="color: #935610"
-            >Beta</el-tag
-          >
-        </div>
-        <div class="splitVertical"></div>
-      </div>
-      <div class="menuView">
-        <div class="routerButton">
-          <div style="margin-right: 5px">
-            <el-button text :bg="true">首页</el-button>
-          </div>
-          <div>
-            <el-button text :bg="false">创建作业</el-button>
-          </div>
-        </div>
-        <div>
-          <el-button>登录/注册</el-button>
-        </div>
-      </div>
-    </nav>
+    <nav-menu ref="navRef"></nav-menu>
+    <div :style="{ width: '100%', height: navHeight + 'px' }"></div>
     <router-view></router-view>
   </div>
 </template>
@@ -36,7 +14,16 @@ export default defineComponent({
 });
 </script> -->
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useDeviceStore } from "@/stores/device";
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
+import NavMenu from "./components/Header.vue";
+
+const navRef = ref();
+const store = useDeviceStore();
+const { navHeight } = storeToRefs(store);
+</script>
 
 <style lang="scss" scoped>
 @mixin flexRowCenter {

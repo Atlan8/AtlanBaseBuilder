@@ -50,6 +50,7 @@ const handleToAnti = () => {
 onMounted(() => {
   console.log(viewRef.value.getBoundingClientRect());
   store.navHeight = viewRef.value.getBoundingClientRect().height;
+  navRect.value = viewRef.value.getBoundingClientRect();
 });
 
 defineExpose({

@@ -15,10 +15,14 @@ export default defineComponent({
 </script> -->
 
 <script lang="ts" setup>
+import { useResize } from "@/hooks/resize/useResize";
 import { useDeviceStore } from "@/stores/device";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import NavMenu from "./components/Header.vue";
+
+// 监听屏幕尺寸变化
+useResize();
 
 const navRef = ref();
 const store = useDeviceStore();

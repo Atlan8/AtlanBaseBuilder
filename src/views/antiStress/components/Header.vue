@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div>{{ title }}</div>
-    <div>{{ username }}</div>
+    <div class="title">{{ title }}</div>
+    <div class="username">{{ username }}</div>
   </div>
 </template>
 
@@ -17,3 +17,14 @@ defineProps({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.username {
+  color: #409eff;
+}
+</style>

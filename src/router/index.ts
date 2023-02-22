@@ -11,15 +11,18 @@ export const customRoutes: RouteRecordRaw[] = [
     path: "/",
     component: Layout,
     redirect: "/home",
+    meta: { title: "主菜单" },
     children: [
       {
         path: "/home",
         name: "home",
+        meta: { title: "首页" },
         component: () => import("@/views/home/index.vue"),
       },
       {
         path: "/antiStress",
         name: "antiStress",
+        meta: { title: "抗压背锅吧" },
         component: () => import("@/views/antiStress/index.vue"),
       },
     ],
@@ -27,6 +30,7 @@ export const customRoutes: RouteRecordRaw[] = [
   {
     path: "/about",
     name: "about",
+    meta: { title: "关于" },
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

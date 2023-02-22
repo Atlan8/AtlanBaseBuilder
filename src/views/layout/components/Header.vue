@@ -1,5 +1,5 @@
 <template>
-  <div style="position: fixed; z-index: 9999; width: 100vw" ref="viewRef">
+  <div style="position: fixed; z-index: 999; width: 100vw" ref="viewRef">
     <nav class="layoutNav shadow">
       <div class="logoView">
         <div class="titleView">
@@ -11,28 +11,47 @@
         <div class="splitVertical"></div>
       </div>
       <div class="menuView">
+        <el-menu mode="horizontal" class="menuList">
+          <div
+            v-for="(item, index) in customRoutes"
+            :key="'route-list-' + index"
+          >
+            <div v-if="item.children && item.children.length > 0">
+              <el-sub-menu>
+                <template #title>{{ item.meta?.title }}</template>
+                <el-menu-item
+                  v-for="(route, idx) in item.children"
+                  :key="'route-cell-' + idx"
+                  :index="idx"
+                  >{{ route.meta?.title }}</el-menu-item
+                >
+              </el-sub-menu>
+            </div>
+            <el-menu-item v-else> {{ item.meta?.title }}</el-menu-item>
+          </div>
+        </el-menu>
         <div class="routerButton">
-          <div style="margin-right: 5px">
-            <el-button text :bg="true">首页</el-button>
-          </div>
-          <div style="margin-right: 5px">
-            <el-button text :bg="true" @click="handleToAnti"
-              >评论列表</el-button
-            >
-          </div>
-          <div>
-            <el-button text :bg="false">创建作业</el-button>
-          </div>
+          <!-- <div style="margin-right: 5px">
+              <el-button text :bg="true">首页</el-button>
+            </div>
+            <div style="margin-right: 5px">
+              <el-button text :bg="true" @click="handleToAnti"
+                >评论列表</el-button
+              >
+            </div>
+            <div>
+              <el-button text :bg="false">创建作业</el-button>
+            </div> -->
         </div>
-        <div>
-          <el-button>登录/注册</el-button>
-        </div>
+      </div>
+      <div>
+        <el-button>登录/注册</el-button>
       </div>
     </nav>
   </div>
 </template>
 <script lang="ts" setup>
-import router from "@/router";
+import router, { customRoutes } from "@/router";
 import { useDeviceStore } from "@/stores/device";
 import { onMounted, ref } from "vue";
 
@@ -91,6 +110,12 @@ defineExpose({
 
     .routerButton {
       @include flexRowCenter();
+    }
+    .menuList {
+      width: 100%;
+      color: #333;
+      background-color: transparent;
+      border: none;
     }
   }
 

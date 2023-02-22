@@ -1,1 +1,12 @@
 @import "./mixin.scss";
+
+.flexCenterSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flexRowCenter {
+  display: flex;
+  align-items: center;
+}

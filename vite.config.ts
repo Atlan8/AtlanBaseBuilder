@@ -29,6 +29,17 @@ export default defineConfig({
     },
   },
   // 全局引入css预处理文件，本质是使用到全局scss的地方，vite会在该行自动引入，路径就是下面的配置
+  /**
+   * 将下面的配置改成 "@import 'styles/index.scss';"，则控制台会出现下面的报错
+   *  Plugin: vite:css
+      File: /Users/shiyanghua/practice/vue3-practice/src/layout/components/Header.vue:1:9
+      Error: Can't find stylesheet to import.
+        ╷
+      1 │ @import 'styles/index.scss';
+        │         ^^^^^^^^^^^^^^^^^^^
+        ╵
+        src/layout/components/Header.vue 1:9  root stylesheet
+   */
   css: {
     preprocessorOptions: {
       scss: {

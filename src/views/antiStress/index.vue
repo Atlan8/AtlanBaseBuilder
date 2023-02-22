@@ -25,7 +25,7 @@ export default defineComponent({
 <script lang="ts" setup>
 import { useService } from "./service";
 import Header from "./components/Header.vue";
-import CommentCell from "./components/commentCell.vue";
+import CommentCell from "./components/CommentCell.vue";
 
 const { title, author, comment } = useService();
 </script>
@@ -38,5 +38,11 @@ const { title, author, comment } = useService();
   background-color: #f5f5f5;
   color: #333;
   padding: 15px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 750px;
+  }
 }
 </style>

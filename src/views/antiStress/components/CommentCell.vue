@@ -10,18 +10,15 @@
       </div>
       <div class="bottom">
         <div style="width: 10px; height: 1px"></div>
-        <div>
-          <div>{{ comment.ipAddress }}</div>
-          <div>{{ comment.device }}</div>
-          <div>{{ comment.floor }}</div>
+        <div class="bottomDataView">
+          <div>ip属地：{{ comment.ipAddress }} &nbsp;&nbsp;</div>
+          <div>来自：{{ comment.device }} &nbsp;&nbsp;</div>
+          <div>{{ comment.floor }} &nbsp;&nbsp;</div>
           <div>{{ comment.datetime }}</div>
         </div>
       </div>
       <div v-for="(item, index) in comment.reply" :key="'reply-cell-' + index">
-        <div>{{ item.username }}</div>
-        <div>{{ item.replyUsername }}</div>
-        <div>{{ item.content }}</div>
-        <div>{{ item.datetime }}</div>
+        <ReplyCell :reply="item" />
       </div>
     </div>
   </div>
@@ -33,6 +30,7 @@ import { DeviceType } from "@/stores/type";
 import { storeToRefs } from "pinia";
 import { computed, type PropType } from "vue";
 import type { PostCommentInfo } from "../type";
+import ReplyCell from "./ReplyCell.vue";
 defineProps({
   comment: {
     type: Object as PropType<PostCommentInfo>,
@@ -47,7 +45,7 @@ const { deviceType } = storeToRefs(store);
 const imageWidth = computed(() => {
   console.log("缓存属性", deviceType.value);
   if (deviceType.value === DeviceType.DESKTOP) {
-    return "30vw";
+    return "500px";
   } else {
     return "100%";
   }
@@ -65,6 +63,7 @@ const userWidth = computed(() => {
 .commentCell {
   display: flex;
   align-items: flex-start;
+  margin-bottom: 15px;
 
   .userView {
     color: #409eff;
@@ -79,7 +78,14 @@ const userWidth = computed(() => {
       margin-bottom: 15px;
     }
     .bottom {
-      @include flexCenter;
+      @include flexRowFn(space-between);
+      margin-top: 15px;
+
+      .bottomDataView {
+        @include flexRowFn(flex-start);
+        font-size: 14px;
+        color: #999;
+      }
     }
   }
 

@@ -4,7 +4,7 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 // import HomeView from "../views/HomeView.vue";
-import Layout from "../views/layout/index.vue";
+import Layout from "@/layout/index.vue";
 
 export const customRoutes: RouteRecordRaw[] = [
   {

@@ -10,6 +10,9 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    hmr: true, // 开启热更
+  },
   plugins: [
     vue(),
     vueJsx(),
@@ -23,6 +26,14 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+  // 全局引入css预处理文件，本质是使用到全局scss的地方，vite会在该行自动引入，路径就是下面的配置
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: "@import '@/styles/index.scss';",
+      },
     },
   },
 });

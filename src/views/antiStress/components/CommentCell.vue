@@ -4,14 +4,25 @@
       {{ comment.username }}
     </div>
     <div class="commentView">
-      <div>{{ comment.content }}</div>
+      <div class="content">{{ comment.content }}</div>
       <div v-for="(image, ind) in comment.cover" :key="'image-cell-' + ind">
         <img :src="image" :style="{ width: imageWidth }" class="coverCell" />
       </div>
-      <div>{{ comment.datetime }}</div>
-      <div>{{ comment.ipAddress }}</div>
-      <div>{{ comment.device }}</div>
-      <div>{{ comment.floor }}</div>
+      <div class="bottom">
+        <div style="width: 10px; height: 1px"></div>
+        <div>
+          <div>{{ comment.ipAddress }}</div>
+          <div>{{ comment.device }}</div>
+          <div>{{ comment.floor }}</div>
+          <div>{{ comment.datetime }}</div>
+        </div>
+      </div>
+      <div v-for="(item, index) in comment.reply" :key="'reply-cell-' + index">
+        <div>{{ item.username }}</div>
+        <div>{{ item.replyUsername }}</div>
+        <div>{{ item.content }}</div>
+        <div>{{ item.datetime }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -63,6 +74,13 @@ const userWidth = computed(() => {
 
   .commentView {
     flex: 1;
+
+    .content {
+      margin-bottom: 15px;
+    }
+    .bottom {
+      @include flexCenter;
+    }
   }
 
   .coverCell {

@@ -30,19 +30,6 @@
             <el-menu-item v-else> {{ item.meta?.title }}</el-menu-item>
           </div>
         </el-menu>
-        <div class="routerButton">
-          <!-- <div style="margin-right: 5px">
-              <el-button text :bg="true">首页</el-button>
-            </div>
-            <div style="margin-right: 5px">
-              <el-button text :bg="true" @click="handleToAnti"
-                >评论列表</el-button
-              >
-            </div>
-            <div>
-              <el-button text :bg="false">创建作业</el-button>
-            </div> -->
-        </div>
       </div>
       <div>
         <el-button>登录/注册</el-button>

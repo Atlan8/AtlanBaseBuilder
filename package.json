@@ -1,6 +1,6 @@
 {
-  "name": "vue3-practice",
-  "version": "0.0.0",
+  "name": "atlan-base-builder",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "vite",

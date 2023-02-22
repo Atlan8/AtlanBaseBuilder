@@ -11,23 +11,37 @@
         <div class="splitVertical"></div>
       </div>
       <div class="menuView">
-        <el-menu mode="horizontal" class="menuList">
+        <el-menu
+          mode="horizontal"
+          :router="true"
+          class="menuList"
+          @select="handleSelect"
+        >
           <div
             v-for="(item, index) in customRoutes"
             :key="'route-list-' + index"
           >
-            <div v-if="item.children && item.children.length > 0">
-              <el-sub-menu>
+            <div
+              v-if="
+                item.children &&
+                item.children.length > 0 &&
+                !item.meta?.hideChildrenInMenu
+              "
+            >
+              <el-sub-menu :index="'' + index">
                 <template #title>{{ item.meta?.title }}</template>
                 <el-menu-item
                   v-for="(route, idx) in item.children"
                   :key="'route-cell-' + idx"
-                  :index="idx"
+                  :index="index + '-' + idx"
+                  :route="route"
                   >{{ route.meta?.title }}</el-menu-item
                 >
               </el-sub-menu>
             </div>
-            <el-menu-item v-else> {{ item.meta?.title }}</el-menu-item>
+            <el-menu-item :index="'' + index" :route="item" v-else>
+              {{ item.meta?.title }}</el-menu-item
+            >
           </div>
         </el-menu>
       </div>
@@ -46,6 +60,10 @@ const store = useDeviceStore();
 
 const viewRef = ref();
 const navRect = ref<DOMRect>();
+
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath);
+};
 
 const handleToAnti = () => {
   router.push({

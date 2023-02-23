@@ -52,7 +52,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import router, { customRoutes } from "@/router";
+import { customRoutes } from "@/router";
 import { useDeviceStore } from "@/stores/device";
 import { onMounted, ref } from "vue";
 
@@ -63,12 +63,6 @@ const navRect = ref<DOMRect>();
 
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
-};
-
-const handleToAnti = () => {
-  router.push({
-    path: "/antiStress",
-  });
 };
 
 onMounted(() => {

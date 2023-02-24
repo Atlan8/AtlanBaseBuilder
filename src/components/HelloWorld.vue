@@ -26,7 +26,7 @@ const handleChangeState = () => {
       What's next?
     </h3>
     <el-button type="primary" @click="handleReset">重置Store</el-button>
-    <el-button type="normal" @click="handleChangeState">改变state</el-button>
+    <el-button type="default" @click="handleChangeState">改变state</el-button>
   </div>
 </template>
 

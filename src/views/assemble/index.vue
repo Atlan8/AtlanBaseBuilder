@@ -7,13 +7,31 @@
         <el-button type="primary">添加</el-button>
       </div>
       <div class="tableList">
-        <el-table></el-table>
+        <el-table :data="assembleList">
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column
+            prop="name"
+            label="方案名"
+            width="100"
+          ></el-table-column>
+          <el-table-column prop="CPU" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+          <el-table-column prop="id" label="序号" width="80"></el-table-column>
+        </el-table>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useAssemble } from "@/views/assemble/hooks/index";
+const { assembleList } = useAssemble();
+</script>
 
 <style lang="scss" scoped>
 .container {

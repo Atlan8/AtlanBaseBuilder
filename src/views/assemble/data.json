@@ -2,42 +2,56 @@
   {
     "id": 1,
     "name": "方案1",
-    "CPU": "i5 13400F",
-    "CPUPrice": 1180,
-    "CPULink": "",
-    "motherboard": "微星 B660m 迫击炮 WIFI",
-    "motherboardPrice": 1099,
-    "motherboardLink": "",
-    "memory": "金百达银爵 3200MHz 16G",
-    "memoryPrice": 219.5,
-    "memoryCount": 2,
-    "memoryTotal": 439,
-    "memoryLink": "",
-    "radiator": "利民PA120",
-    "radiatorPrice": 178,
-    "radiatorLink": "",
+    "cpu": { "name": "i5 13400F", "price": 1180, "link": "" },
+    "motherboard": {
+      "name": "微星 B660m 迫击炮 WIFI",
+      "price": 1099,
+      "link": ""
+    },
+    "memory": {
+      "name": "金百达银爵 3200MHz 16G",
+      "price": 219.5,
+      "count": 2,
+      "total": 439,
+      "link": ""
+    },
+    "radiator": {
+      "name": "利民PA120",
+      "price": 178,
+      "link": ""
+    },
     "hardDiskList": [
       {
-        "hardDisk": "致钛 TiPro7000",
-        "hardDiskPrice": 669,
-        "hardDiskCount": 1,
-        "hardDiskTotal": 669,
-        "hardDiskLink": ""
+        "name": "致钛 TiPro7000",
+        "price": 669,
+        "count": 1,
+        "total": 669,
+        "link": ""
       }
     ],
-    "graphicsCard": "七彩虹 3080ti AO",
-    "graphicsCardPrice": 4699,
-    "graphicsCardLink": "",
-    "powerSupply": "长城750w x7 金牌全模组",
-    "powerSupplyPrice": 579,
-    "powerSupplyLink": "",
-    "chassis": "先马朱雀Air",
-    "chassisPrice": 149,
-    "chassisLink": "",
-    "fan": "利民无光工包",
-    "fanPrice": 20.2,
-    "fanCount": 5,
-    "fanTotal": 107,
-    "fanLink": ""
+    "graphicsCard": {
+      "name": "七彩虹 3080ti AO",
+      "price": 4699,
+      "link": ""
+    },
+    "powerSupply": {
+      "name": "长城750w x7 金牌全模组",
+      "price": 579,
+      "link": ""
+    },
+    "chassis": {
+      "name": "先马朱雀Air",
+      "price": 149,
+      "link": ""
+    },
+    "fan": {
+      "name": "利民无光工包",
+      "price": 20.2,
+      "count": 5,
+      "total": 107,
+      "link": ""
+    },
+    "timestramp": 1677334177023,
+    "datetime": "2023-02-25 22:19"
   }
 ]

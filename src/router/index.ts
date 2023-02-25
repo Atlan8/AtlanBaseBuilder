@@ -25,6 +25,12 @@ export const customRoutes: RouteRecordRaw[] = [
         meta: { title: "抗压背锅吧" },
         component: () => import("@/views/antiStress/index.vue"),
       },
+      {
+        path: "/assemble",
+        name: "assemble",
+        meta: { title: "装机计算器" },
+        component: () => import("@/views/assemble/index.vue"),
+      },
     ],
   },
   {

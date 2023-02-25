@@ -10,13 +10,21 @@
     "motherboardLink": "",
     "memory": "",
     "memoryPrice": 0,
+    "memoryCount": 0,
+    "memoryTotal": 0,
     "memoryLink": "",
     "radiator": "",
     "radiatorPrice": 0,
     "radiatorLink": "",
-    "hardDisk": "",
-    "hardDiskPrice": 0,
-    "hardDiskLink": "",
+    "hardDiskList": [
+      {
+        "hardDisk": "",
+        "hardDiskPrice": 0,
+        "hardDiskCount": 0,
+        "hardDiskTotal": 0,
+        "hardDiskLink": ""
+      }
+    ],
     "graphicsCard": "",
     "graphicsCardPrice": 0,
     "graphicsCardLink": "",

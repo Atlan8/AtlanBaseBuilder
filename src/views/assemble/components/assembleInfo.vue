@@ -1,40 +1,114 @@
 <template>
   <div>
     <div>
-      <el-form :model="info" label-width="150px" label-position="left">
+      <el-form :model="info" label-width="150px" label-position="right">
         <el-form-item label="方案名称">
-          <el-input v-model="formData.name"></el-input>
+          <el-input
+            v-model="formData.name"
+            style="width: 250px"
+            v-show="isForm"
+          ></el-input>
+          <div v-show="!isForm">{{ info.name }}</div>
         </el-form-item>
         <el-form-item label="CPU">
           <div>
-            <div>名称：<el-input v-model="formData.cpu.name"></el-input></div>
-            <div>价格：<el-input v-model="formData.cpu.price"></el-input></div>
-            <div>
-              购买链接：<el-input v-model="formData.cpu.link"></el-input>
+            <AssembleSpecification
+              v-model:item="formData.cpu"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="主板">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.motherboard"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="内存">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.memory"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="散热器">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.radiator"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="硬盘">
+          <div>
+            <div
+              v-for="(item, index) in formData.hardDiskList"
+              :key="'hard-cell-' + index"
+            >
+              <AssembleSpecification
+                v-model:item="formData.hardDiskList[index]"
+                :is-form="isForm"
+              />
             </div>
           </div>
         </el-form-item>
-        <el-form-item label="主板"></el-form-item>
-        <el-form-item label="内存"></el-form-item>
-        <el-form-item label="散热器"></el-form-item>
-        <el-form-item label="硬盘"></el-form-item>
-        <el-form-item label="显卡"></el-form-item>
-        <el-form-item label="电源"></el-form-item>
-        <el-form-item label="机箱"></el-form-item>
-        <el-form-item label="风扇"></el-form-item>
+        <el-form-item label="显卡">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.graphicsCard"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="电源">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.powerSupply"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="机箱">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.chassis"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="风扇">
+          <div>
+            <AssembleSpecification
+              v-model:item="formData.fan"
+              :is-form="isForm"
+            />
+          </div>
+        </el-form-item>
+        <el-form-item label="总价">
+          <div v-show="!isForm">￥{{ info.total }}</div>
+          <div v-show="!!isForm">￥{{ assembleTotal }}</div>
+        </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { type PropType, watch, reactive } from "vue";
+import { type PropType, watch, reactive, onMounted, computed } from "vue";
 import type { AssembleInfo } from "../service";
+import AssembleSpecification from "./assembleSpecification.vue";
 
 const props = defineProps({
   info: {
     type: Object as PropType<AssembleInfo>,
     required: true,
+  },
+  isForm: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -99,12 +173,32 @@ let formData = reactive<AssembleInfo>({
   datetime: "",
 });
 
-watch(
-  () => props.info,
-  (newVal: AssembleInfo) => {
-    formData = { ...newVal };
-  }
-);
+const assembleTotal = computed(() => {
+  const hard = formData.hardDiskList.reduce((prev, cur) => {
+    if (!cur.total) return prev;
+    return prev + cur.total;
+  }, 0);
+
+  const total =
+    formData.cpu.price +
+    formData.motherboard.price +
+    (formData.memory?.total ?? 0) +
+    formData.radiator.price +
+    hard +
+    formData.graphicsCard.price +
+    formData.powerSupply.price +
+    formData.chassis.price +
+    (formData.fan?.total ?? 0);
+  return total;
+});
+
+onMounted(() => {
+  formData = props.info;
+});
+
+watch(props.info, (newVal: AssembleInfo) => {
+  formData = { ...newVal };
+});
 </script>
 
 <style lang="scss" scoped></style>

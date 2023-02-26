@@ -109,7 +109,7 @@
           >
             <template #default="scope">
               <div>
-                <AssembleSpecification :item="scope.row.cpu" />
+                <AssembleSpecification :item="scope.row.powerSupply" />
               </div>
             </template>
           </el-table-column>
@@ -121,7 +121,7 @@
           >
             <template #default="scope">
               <div>
-                <AssembleSpecification :item="scope.row.cpu" />
+                <AssembleSpecification :item="scope.row.chassis" />
               </div>
             </template>
           </el-table-column>
@@ -144,10 +144,14 @@
           >
             <template #default="scope">
               <div>
-                <el-button @click="handleShowInfo(scope.row)"
+                <el-button @click="handleShowInfo(scope.row, false)"
                   >查看详情</el-button
                 >
-                <el-button type="primary">修改</el-button>
+                <el-button
+                  type="primary"
+                  @click="handleShowInfo(scope.row, true)"
+                  >修改</el-button
+                >
                 <el-button type="warning">删除</el-button>
               </div>
             </template>
@@ -162,7 +166,11 @@
       @close="handleClose"
     >
       <div>
-        <AssembleInfo v-if="!!assembleInfo" :info="assembleInfo" />
+        <AssembleInfo
+          v-if="!!assembleInfo"
+          :info="assembleInfo"
+          :is-form="isEditInfo"
+        />
       </div>
     </el-dialog>
   </div>
@@ -177,6 +185,7 @@ const {
   assembleList,
   assembleInfo,
   showInfoDialog,
+  isEditInfo,
   handleShowInfo,
   handleClose,
 } = useAssemble();
@@ -189,7 +198,7 @@ const {
 
   .header {
     @include flexRowFn(flex-start);
-    padding-top: 15px;
+    padding: 15px 0;
   }
 }
 </style>

@@ -8,8 +8,8 @@ export interface AccessoriesInfo {
 }
 
 export interface AccessoriesInfoExt extends AccessoriesInfo {
-  count: number; // 硬盘数量
-  total: number; // 硬盘总价
+  count?: number; // 硬盘数量
+  total?: number; // 硬盘总价
 }
 
 export interface AssembleInfo {

@@ -30,13 +30,17 @@
             >
               <el-sub-menu :index="'' + index">
                 <template #title>{{ item.meta?.title }}</template>
-                <el-menu-item
+                <div
                   v-for="(route, idx) in item.children"
                   :key="'route-cell-' + idx"
-                  :index="index + '-' + idx"
-                  :route="route"
-                  >{{ route.meta?.title }}</el-menu-item
                 >
+                  <el-menu-item
+                    v-if="!route.meta?.hidden"
+                    :index="index + '-' + idx"
+                    :route="route"
+                    >{{ route.meta?.title }}</el-menu-item
+                  >
+                </div>
               </el-sub-menu>
             </div>
             <el-menu-item :index="'' + index" :route="item" v-else>

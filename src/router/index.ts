@@ -31,6 +31,12 @@ export const customRoutes: RouteRecordRaw[] = [
         meta: { title: "装机计算器" },
         component: () => import("@/views/assemble/index.vue"),
       },
+      {
+        path: "/assemble/edit",
+        name: "assembleEdit",
+        meta: { hidden: true },
+        component: () => import("@/views/assemble/edit.vue"),
+      },
     ],
   },
   {

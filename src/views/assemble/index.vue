@@ -8,118 +8,145 @@
       </div>
       <div class="tableList">
         <el-table :data="assembleList">
-          <el-table-column prop="id" label="序号" width="80"></el-table-column>
           <el-table-column
+            fixed
+            prop="id"
+            label="序号"
+            width="80"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            fixed
             prop="name"
             label="方案名"
             width="100"
+            align="center"
           ></el-table-column>
-          <el-table-column prop="cpu" label="CPU" width="150">
+          <el-table-column prop="cpu" label="CPU" width="120" align="center">
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.cpu.name }}</div>
-                <div>价格：￥{{ scope.row.cpu.price }}</div>
-                <div>购买链接：{{ scope.row.cpu.link }}</div>
+                <AssembleSpecification :item="scope.row.cpu" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="motherboard" label="主板" width="200">
+          <el-table-column
+            prop="motherboard"
+            label="主板"
+            width="220"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.motherboard.name }}</div>
-                <div>价格：￥{{ scope.row.motherboard.price }}</div>
-                <div>购买链接：{{ scope.row.motherboard.link }}</div>
+                <AssembleSpecification :item="scope.row.motherboard" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="graphicsCard" label="显卡" width="150">
+          <el-table-column
+            prop="graphicsCard"
+            label="显卡"
+            width="200"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.graphicsCard.name }}</div>
-                <div>价格：￥{{ scope.row.graphicsCard.price }}</div>
-                <div>购买链接：{{ scope.row.graphicsCard.link }}</div>
+                <AssembleSpecification :item="scope.row.graphicsCard" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="memory" label="内存" width="200">
+          <el-table-column
+            prop="memory"
+            label="内存"
+            width="220"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.memory.name }}</div>
-                <div>价格：￥{{ scope.row.memory.price }}</div>
-                <div>数量：x{{ scope.row.memory.count }}</div>
-                <div>总价：￥{{ scope.row.memory.total }}</div>
-                <div>购买链接：{{ scope.row.memory.link }}</div>
+                <AssembleSpecification :item="scope.row.memory" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="hardDiskList" label="硬盘" width="200">
+          <el-table-column
+            prop="hardDiskList"
+            label="硬盘"
+            width="200"
+            align="center"
+          >
             <template #default="scope">
               <div>
                 <div
                   v-for="(item, index) in scope.row.hardDiskList"
                   :key="'hard-disk-cell-' + index"
                 >
-                  <div>名称：{{ item.name }}</div>
-                  <div>价格：￥{{ item.price }}</div>
-                  <div>数量：x{{ item.count }}</div>
-                  <div>总价：￥{{ item.total }}</div>
-                  <div>购买链接：{{ item.link }}</div>
+                  <AssembleSpecification :item="item" />
                 </div>
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="radiator" label="散热器" width="120">
+          <el-table-column
+            prop="radiator"
+            label="散热器"
+            width="200"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.radiator.name }}</div>
-                <div>价格：￥{{ scope.row.radiator.price }}</div>
-                <div>购买链接：{{ scope.row.radiator.link }}</div>
+                <AssembleSpecification :item="scope.row.radiator" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="fan" label="风扇" width="120">
+          <el-table-column prop="fan" label="风扇" width="200" align="center">
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.fan.name }}</div>
-                <div>价格：￥{{ scope.row.fan.price }}</div>
-                <div>数量：x{{ scope.row.fan.count }}</div>
-                <div>总价：￥{{ scope.row.fan.total }}</div>
-                <div>购买链接：{{ scope.row.fan.link }}</div>
+                <AssembleSpecification :item="scope.row.fan" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="powerSupply" label="电源" width="120">
+          <el-table-column
+            prop="powerSupply"
+            label="电源"
+            width="200"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.powerSupply.name }}</div>
-                <div>价格：￥{{ scope.row.powerSupply.price }}</div>
-                <div>购买链接：{{ scope.row.powerSupply.link }}</div>
+                <AssembleSpecification :item="scope.row.cpu" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="chassis" label="机箱" width="120">
+          <el-table-column
+            prop="chassis"
+            label="机箱"
+            width="180"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <div>名称：{{ scope.row.chassis.name }}</div>
-                <div>价格：￥{{ scope.row.chassis.price }}</div>
-                <div>购买链接：{{ scope.row.chassis.link }}</div>
+                <AssembleSpecification :item="scope.row.cpu" />
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="total" label="总价" width="100">
+          <el-table-column prop="total" label="总价" width="100" align="center">
             <template #default="scope">
-              <div>{{ scope.row.total }}</div>
+              <div>￥{{ scope.row.total }}</div>
             </template>
           </el-table-column>
           <el-table-column
             prop="datetime"
             label="创建时间"
-            width="100"
+            width="180"
+            align="center"
           ></el-table-column>
-          <el-table-column label="操作" width="300">
+          <el-table-column
+            fixed="right"
+            label="操作"
+            width="300"
+            align="center"
+          >
             <template #default="scope">
               <div>
-                <el-button>查看详情</el-button>
+                <el-button @click="handleShowInfo(scope.row)"
+                  >查看详情</el-button
+                >
                 <el-button type="primary">修改</el-button>
                 <el-button type="warning">删除</el-button>
               </div>
@@ -128,12 +155,31 @@
         </el-table>
       </div>
     </div>
+    <el-dialog
+      v-model="showInfoDialog"
+      title="装机配置单详情"
+      :close-on-click-modal="true"
+      @close="handleClose"
+    >
+      <div>
+        <AssembleInfo v-if="!!assembleInfo" :info="assembleInfo" />
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useAssemble } from "@/views/assemble/hooks/index";
-const { assembleList } = useAssemble();
+import AssembleInfo from "./components/assembleInfo.vue";
+import AssembleSpecification from "./components/assembleSpecification.vue";
+
+const {
+  assembleList,
+  assembleInfo,
+  showInfoDialog,
+  handleShowInfo,
+  handleClose,
+} = useAssemble();
 </script>
 
 <style lang="scss" scoped>

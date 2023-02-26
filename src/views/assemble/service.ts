@@ -23,7 +23,7 @@ export interface AssembleInfo {
   graphicsCard: AccessoriesInfo; // 显卡
   powerSupply: AccessoriesInfo; // 电源
   chassis: AccessoriesInfo; // 机箱
-  fan: AccessoriesInfo; // 风扇
+  fan: AccessoriesInfoExt; // 风扇
   total: number; // 总价
   timestramp: number; // 创建时间戳
   datetime: string; // 创建时间

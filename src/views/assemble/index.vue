@@ -177,7 +177,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useAssemble } from "@/views/assemble/hooks/index";
+import { useAssemble } from "@/views/assemble/hooks/useAssemble";
 import AssembleInfo from "./components/assembleInfo.vue";
 import AssembleSpecification from "./components/assembleSpecification.vue";
 

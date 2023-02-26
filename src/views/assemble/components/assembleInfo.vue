@@ -97,7 +97,14 @@
 </template>
 
 <script lang="ts" setup>
-import { type PropType, watch, reactive, onMounted, computed } from "vue";
+import {
+  type PropType,
+  watch,
+  reactive,
+  onMounted,
+  computed,
+  toRefs,
+} from "vue";
 import type { AssembleInfo } from "../service";
 import AssembleSpecification from "./assembleSpecification.vue";
 
@@ -189,6 +196,7 @@ const assembleTotal = computed(() => {
     formData.powerSupply.price +
     formData.chassis.price +
     (formData.fan?.total ?? 0);
+  debugger;
   return total;
 });
 
@@ -198,6 +206,10 @@ onMounted(() => {
 
 watch(props.info, (newVal: AssembleInfo) => {
   formData = { ...newVal };
+});
+
+watch(formData, (newVal) => {
+  console.log(toRefs(newVal));
 });
 </script>
 

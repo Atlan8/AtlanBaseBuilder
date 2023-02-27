@@ -15,6 +15,7 @@
             <AssembleSpecification
               v-model:item="formData.cpu"
               :is-form="isForm"
+              @change="handleCPUChange"
             />
           </div>
         </el-form-item>
@@ -89,7 +90,7 @@
         </el-form-item>
         <el-form-item label="总价">
           <div v-show="!isForm">￥{{ info.total }}</div>
-          <div v-show="!!isForm">￥{{ assembleTotal }}</div>
+          <div v-show="!!isForm">￥{{ totalPrice }}</div>
         </el-form-item>
       </el-form>
     </div>
@@ -104,6 +105,7 @@ import {
   onMounted,
   computed,
   toRefs,
+  ref,
 } from "vue";
 import type { AssembleInfo } from "../service";
 import AssembleSpecification from "./assembleSpecification.vue";
@@ -180,25 +182,30 @@ let formData = reactive<AssembleInfo>({
   datetime: "",
 });
 
-const assembleTotal = computed(() => {
-  const hard = formData.hardDiskList.reduce((prev, cur) => {
-    if (!cur.total) return prev;
-    return prev + cur.total;
-  }, 0);
+const totalPrice = ref(0);
 
-  const total =
-    formData.cpu.price +
-    formData.motherboard.price +
-    (formData.memory?.total ?? 0) +
-    formData.radiator.price +
-    hard +
-    formData.graphicsCard.price +
-    formData.powerSupply.price +
-    formData.chassis.price +
-    (formData.fan?.total ?? 0);
-  debugger;
-  return total;
-});
+/**
+ * computed 没有明确响应式对象的某个值，是不会执行更新操作的。如下面的复杂对象，不明确某个属性发生变化，计算属性不生效
+ */
+// const assembleTotal = computed(() => {
+//   const hard = formData.hardDiskList.reduce((prev, cur) => {
+//     if (!cur.total) return prev;
+//     return prev + cur.total;
+//   }, 0);
+
+//   const total =
+//     formData.cpu.price +
+//     formData.motherboard.price +
+//     (formData.memory?.total ?? 0) +
+//     formData.radiator.price +
+//     hard +
+//     formData.graphicsCard.price +
+//     formData.powerSupply.price +
+//     formData.chassis.price +
+//     (formData.fan?.total ?? 0);
+//   // debugger;
+//   return total;
+// });
 
 onMounted(() => {
   formData = props.info;
@@ -208,9 +215,33 @@ watch(props.info, (newVal: AssembleInfo) => {
   formData = { ...newVal };
 });
 
+/**
+ * 监听数据变化，动态调整总价，不能使用computed的替代方案
+ */
 watch(formData, (newVal) => {
-  console.log(toRefs(newVal));
+  console.log("表单数据变化", { ...newVal });
+  const hard = newVal.hardDiskList.reduce((prev, cur) => {
+    if (!cur.total) return prev;
+    return prev + cur.total;
+  }, 0);
+
+  const total =
+    +newVal.cpu.price +
+    +newVal.motherboard.price +
+    +(newVal.memory?.total ?? 0) +
+    +newVal.radiator.price +
+    hard +
+    +newVal.graphicsCard.price +
+    +newVal.powerSupply.price +
+    +newVal.chassis.price +
+    +(newVal.fan?.total ?? 0);
+  // debugger;
+  totalPrice.value = total;
 });
+
+const handleCPUChange = (val) => {
+  console.log("传递的值:", val.target.value);
+};
 </script>
 
 <style lang="scss" scoped></style>

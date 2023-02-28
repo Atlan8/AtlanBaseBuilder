@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="specificationView" v-show="!isForm">
+    <div class="specificationView" v-if="!isForm && !!item">
       <div>名称：{{ item.name }}</div>
       <div>价格：￥{{ item.price }}</div>
       <div v-if="showCount">数量：x{{ item.count }}</div>
@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { type PropType, ref, onMounted } from "vue";
+import { type PropType, ref, onMounted, watch } from "vue";
 import type { AccessoriesInfoExt } from "../service";
 
 const props = defineProps({
@@ -55,28 +55,41 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:change"]);
+const emit = defineEmits(["update:item"]);
 
-const formData = ref<AccessoriesInfoExt>(props.item);
+const formData = ref<AccessoriesInfoExt>({ ...props.item });
 
 const showCount = ref(false);
 const showTotal = ref(false);
 
 const handleNameChange = (val: string) => {
-  emit("update:change", { ...formData, name: val });
+  emit("update:item", { ...formData.value, name: val });
 };
 
 const handlePriceChange = (val: number) => {
-  emit("update:change", { ...formData, price: +val });
+  console.log("价格发生了变化！");
+  emit("update:item", { ...formData.value, price: +val });
 };
 
 const handleCountChange = (val: number) => {
-  emit("update:change", { ...formData, count: +val });
+  emit("update:item", { ...formData.value, count: +val });
 };
 
 const handleTotalChange = (val: number) => {
-  emit("update:change", { ...formData, total: +val });
+  emit("update:item", { ...formData.value, total: +val });
 };
+
+watch(
+  () => props.item,
+  (newVal: AccessoriesInfoExt) => {
+    console.log("父组件的传参更新了！！", { ...newVal });
+    if (!newVal) return;
+    showCount.value = Reflect.has(newVal, "count");
+    showTotal.value = Reflect.has(newVal, "total");
+    // console.log("父组件的传参更新了！！", { ...newVal });
+    formData.value = { ...newVal };
+  }
+);
 
 onMounted(() => {
   showCount.value = Reflect.has(props.item, "count");

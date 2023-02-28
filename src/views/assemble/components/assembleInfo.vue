@@ -15,7 +15,6 @@
             <AssembleSpecification
               v-model:item="formData.cpu"
               :is-form="isForm"
-              @change="handleCPUChange"
             />
           </div>
         </el-form-item>
@@ -90,7 +89,11 @@
         </el-form-item>
         <el-form-item label="总价">
           <div v-show="!isForm">￥{{ info.total }}</div>
-          <div v-show="!!isForm">￥{{ totalPrice }}</div>
+          <div v-show="!!isForm">￥-{{ totalPrice }}</div>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleConfirm">确定</el-button>
+          <el-button>取消</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -103,9 +106,9 @@ import {
   watch,
   reactive,
   onMounted,
-  computed,
-  toRefs,
   ref,
+  watchEffect,
+  onUnmounted,
 } from "vue";
 import type { AssembleInfo } from "../service";
 import AssembleSpecification from "./assembleSpecification.vue";
@@ -208,7 +211,9 @@ const totalPrice = ref(0);
 // });
 
 onMounted(() => {
-  formData = props.info;
+  formData = { ...props.info };
+  console.log(JSON.stringify(props.info));
+  totalPrice.value = props.info.total;
 });
 
 watch(props.info, (newVal: AssembleInfo) => {
@@ -218,30 +223,60 @@ watch(props.info, (newVal: AssembleInfo) => {
 /**
  * 监听数据变化，动态调整总价，不能使用computed的替代方案
  */
-watch(formData, (newVal) => {
-  console.log("表单数据变化", { ...newVal });
-  const hard = newVal.hardDiskList.reduce((prev, cur) => {
-    if (!cur.total) return prev;
-    return prev + cur.total;
-  }, 0);
+watch(
+  () => formData,
+  (newVal) => {
+    console.log("表单数据变化", { ...newVal });
+    const hard = newVal.hardDiskList.reduce((prev, cur) => {
+      if (!cur.total) return prev;
+      return prev + cur.total;
+    }, 0);
 
-  const total =
-    +newVal.cpu.price +
-    +newVal.motherboard.price +
-    +(newVal.memory?.total ?? 0) +
-    +newVal.radiator.price +
-    hard +
-    +newVal.graphicsCard.price +
-    +newVal.powerSupply.price +
-    +newVal.chassis.price +
-    +(newVal.fan?.total ?? 0);
-  // debugger;
-  totalPrice.value = total;
-});
+    const total =
+      +newVal.cpu.price +
+      +newVal.motherboard.price +
+      +(newVal.memory?.total ?? 0) +
+      +newVal.radiator.price +
+      hard +
+      +newVal.graphicsCard.price +
+      +newVal.powerSupply.price +
+      +newVal.chassis.price +
+      +(newVal.fan?.total ?? 0);
+    // debugger;
+    totalPrice.value = total;
+  },
+  { deep: true, immediate: true }
+);
 
-const handleCPUChange = (val) => {
-  console.log("传递的值:", val.target.value);
+// const stopEffect = watchEffect(() => {
+//   console.log("表单数据变化", { ...formData });
+//   const hard = formData.hardDiskList.reduce((prev, cur) => {
+//     if (!cur.total) return prev;
+//     return prev + cur.total;
+//   }, 0);
+
+//   const total =
+//     +formData.cpu.price +
+//     +formData.motherboard.price +
+//     +(formData.memory?.total ?? 0) +
+//     +formData.radiator.price +
+//     hard +
+//     +formData.graphicsCard.price +
+//     +formData.powerSupply.price +
+//     +formData.chassis.price +
+//     +(formData.fan?.total ?? 0);
+//   // debugger;
+//   totalPrice.value = total;
+// });
+
+const handleConfirm = () => {
+  console.log("---> 修改后的数据", JSON.stringify(formData));
 };
+
+onUnmounted(() => {
+  // 消除负面影响
+  // stopEffect();
+});
 </script>
 
 <style lang="scss" scoped></style>

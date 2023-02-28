@@ -89,7 +89,7 @@
         </el-form-item>
         <el-form-item label="总价">
           <div v-show="!isForm">￥{{ info.total }}</div>
-          <div v-show="!!isForm">￥-{{ totalPrice }}</div>
+          <div v-show="!!isForm">￥{{ totalPrice }}</div>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleConfirm">确定</el-button>

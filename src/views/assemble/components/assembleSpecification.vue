@@ -42,7 +42,6 @@
 </template>
 
 <script lang="ts" setup>
-import { format } from "path";
 import { type PropType, ref, onMounted, watch } from "vue";
 import type { AccessoriesInfoExt } from "../service";
 
@@ -70,6 +69,7 @@ const handleNameChange = (val: string) => {
 
 const handlePriceChange = (val: number) => {
   console.log("价格发生了变化！");
+  // 更新总价
   if (showTotal.value === true) {
     formData.value.total = (formData.value?.count ?? 0) * formData.value.price;
   }
@@ -77,6 +77,10 @@ const handlePriceChange = (val: number) => {
 };
 
 const handleCountChange = (val: number) => {
+  // 更新总价
+  if (showTotal.value === true) {
+    formData.value.total = (formData.value?.count ?? 0) * formData.value.price;
+  }
   emit("update:item", { ...formData.value, count: +val });
 };
 

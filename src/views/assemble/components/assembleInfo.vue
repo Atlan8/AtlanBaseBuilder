@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { type PropType, onMounted, ref, computed, onUnmounted } from "vue";
+import { type PropType, onMounted, ref, computed } from "vue";
 import type { AssembleInfo } from "../service";
 import AssembleSpecification from "./assembleSpecification.vue";
 
@@ -121,27 +121,38 @@ let formData = ref<AssembleInfo>();
 // const totalPrice = ref(0);
 
 /**
- * computed 用于监听 ref 对象，使用 reactive 的不生效
+ * computed 监听 ref 对象，使用 reactive 的不生效
  */
 const totalPrice = computed(() => {
   if (!formData.value) return 0;
   const hard = formData.value.hardDiskList.reduce((prev, cur) => {
-    if (!cur.total) return prev;
-    return prev + cur.total;
+    if (!cur.count) return prev;
+    return prev + cur.count * cur.price;
   }, 0);
+
+  const cpuPrice = +formData.value.cpu.price;
+  const motherboardPrice = +formData.value.motherboard.price;
+  const memoryPrice =
+    +(formData.value.memory?.count ?? 0) * +formData.value.memory.price;
+  const radiatorPrice = +formData.value.radiator.price;
+  const graphicsCardPrice = +formData.value.graphicsCard.price;
+  const powerSupplyPrice = +formData.value.powerSupply.price;
+  const fanPrice =
+    +(formData.value.fan?.count ?? 0) * +formData.value.fan.price;
+  const chassisPrice = +formData.value.chassis.price;
 
   console.log("表单数据变化", formData);
 
   const total =
-    formData.value.cpu.price +
-    formData.value.motherboard.price +
-    (formData.value.memory?.total ?? 0) +
-    formData.value.radiator.price +
     hard +
-    formData.value.graphicsCard.price +
-    formData.value.powerSupply.price +
-    formData.value.chassis.price +
-    (formData.value.fan?.total ?? 0);
+    cpuPrice +
+    motherboardPrice +
+    memoryPrice +
+    radiatorPrice +
+    graphicsCardPrice +
+    powerSupplyPrice +
+    chassisPrice +
+    fanPrice;
   // debugger;
   return total;
 });
@@ -157,7 +168,7 @@ onMounted(() => {
 // });
 
 /**
- * 监听数据变化，动态调整总价，不能使用computed的替代方案
+ * 监听数据变化，动态调整总价 监听 ref 对象，使用 reactive 的不生效
  */
 // watch(
 //   formData,
@@ -193,10 +204,6 @@ onMounted(() => {
 const handleConfirm = () => {
   console.log("---> 修改后的数据", JSON.stringify(formData));
 };
-
-onUnmounted(() => {
-  // 消除负面影响
-});
 </script>
 
 <style lang="scss" scoped></style>

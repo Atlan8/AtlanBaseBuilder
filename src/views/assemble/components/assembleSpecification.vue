@@ -27,11 +27,12 @@
         ></el-input>
       </div>
       <div v-if="showTotal" class="formCell">
-        总价：<el-input
+        <!-- 总价：<el-input
           v-model="formData.total"
           @change="handleTotalChange"
           type="number"
-        ></el-input>
+        ></el-input> -->
+        总价：{{ (formData?.count ?? 0) * formData.price }}
       </div>
       <div class="formCell">
         购买链接：<el-input v-model="formData.link"></el-input>
@@ -41,6 +42,7 @@
 </template>
 
 <script lang="ts" setup>
+import { format } from "path";
 import { type PropType, ref, onMounted, watch } from "vue";
 import type { AccessoriesInfoExt } from "../service";
 
@@ -68,6 +70,9 @@ const handleNameChange = (val: string) => {
 
 const handlePriceChange = (val: number) => {
   console.log("价格发生了变化！");
+  if (showTotal.value === true) {
+    formData.value.total = (formData.value?.count ?? 0) * formData.value.price;
+  }
   emit("update:item", { ...formData.value, price: +val });
 };
 
@@ -75,9 +80,9 @@ const handleCountChange = (val: number) => {
   emit("update:item", { ...formData.value, count: +val });
 };
 
-const handleTotalChange = (val: number) => {
-  emit("update:item", { ...formData.value, total: +val });
-};
+// const handleTotalChange = (val: number) => {
+//   emit("update:item", { ...formData.value, total: +val });
+// };
 
 watch(
   () => props.item,

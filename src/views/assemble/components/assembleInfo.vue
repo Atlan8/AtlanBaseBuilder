@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div v-if="formData">
       <el-form :model="info" label-width="150px" label-position="right">
         <el-form-item label="方案名称">
           <el-input
@@ -101,15 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  type PropType,
-  watch,
-  reactive,
-  onMounted,
-  ref,
-  watchEffect,
-  onUnmounted,
-} from "vue";
+import { type PropType, onMounted, ref, computed, onUnmounted } from "vue";
 import type { AssembleInfo } from "../service";
 import AssembleSpecification from "./assembleSpecification.vue";
 
@@ -124,150 +116,79 @@ const props = defineProps({
   },
 });
 
-let formData = reactive<AssembleInfo>({
-  id: 0,
-  name: "",
-  cpu: {
-    name: "",
-    price: 0,
-    link: "",
-  },
-  motherboard: {
-    name: "",
-    price: 0,
-    link: "",
-  },
-  memory: {
-    name: "",
-    price: 0,
-    count: 0,
-    total: 0,
-    link: "",
-  },
-  radiator: {
-    name: "",
-    price: 0,
-    link: "",
-  },
-  hardDiskList: [
-    {
-      name: "",
-      price: 0,
-      count: 0,
-      total: 0,
-      link: "",
-    },
-  ],
-  graphicsCard: {
-    name: "",
-    price: 0,
-    link: "",
-  },
-  powerSupply: {
-    name: "",
-    price: 0,
-    link: "",
-  },
-  chassis: {
-    name: "",
-    price: 0,
-    link: "",
-  },
-  fan: {
-    name: "",
-    price: 0,
-    count: 0,
-    total: 0,
-    link: "",
-  },
-  total: 0,
-  timestramp: 0,
-  datetime: "",
-});
+let formData = ref<AssembleInfo>();
 
-const totalPrice = ref(0);
+// const totalPrice = ref(0);
 
 /**
- * computed 没有明确响应式对象的某个值，是不会执行更新操作的。如下面的复杂对象，不明确某个属性发生变化，计算属性不生效
+ * computed 用于监听 ref 对象，使用 reactive 的不生效
  */
-// const assembleTotal = computed(() => {
-//   const hard = formData.hardDiskList.reduce((prev, cur) => {
-//     if (!cur.total) return prev;
-//     return prev + cur.total;
-//   }, 0);
+const totalPrice = computed(() => {
+  if (!formData.value) return 0;
+  const hard = formData.value.hardDiskList.reduce((prev, cur) => {
+    if (!cur.total) return prev;
+    return prev + cur.total;
+  }, 0);
 
-//   const total =
-//     formData.cpu.price +
-//     formData.motherboard.price +
-//     (formData.memory?.total ?? 0) +
-//     formData.radiator.price +
-//     hard +
-//     formData.graphicsCard.price +
-//     formData.powerSupply.price +
-//     formData.chassis.price +
-//     (formData.fan?.total ?? 0);
-//   // debugger;
-//   return total;
-// });
+  console.log("表单数据变化", formData);
+
+  const total =
+    formData.value.cpu.price +
+    formData.value.motherboard.price +
+    (formData.value.memory?.total ?? 0) +
+    formData.value.radiator.price +
+    hard +
+    formData.value.graphicsCard.price +
+    formData.value.powerSupply.price +
+    formData.value.chassis.price +
+    (formData.value.fan?.total ?? 0);
+  // debugger;
+  return total;
+});
 
 onMounted(() => {
-  formData = { ...props.info };
+  formData.value = props.info;
   console.log(JSON.stringify(props.info));
-  totalPrice.value = props.info.total;
+  // totalPrice.value = props.info.total;
 });
 
-watch(props.info, (newVal: AssembleInfo) => {
-  formData = { ...newVal };
-});
+// watch(props.info, (newVal: AssembleInfo) => {
+//   formData = { ...newVal };
+// });
 
 /**
  * 监听数据变化，动态调整总价，不能使用computed的替代方案
  */
-watch(
-  () => formData,
-  (newVal) => {
-    console.log("表单数据变化", { ...newVal });
-    const hard = newVal.hardDiskList.reduce((prev, cur) => {
-      if (!cur.total) return prev;
-      return prev + cur.total;
-    }, 0);
+// watch(
+//   formData,
+//   (newVal) => {
+//     console.log("表单数据变化", { ...newVal });
+//     if (!newVal) return;
+//     const hard = newVal.hardDiskList.reduce((prev, cur) => {
+//       if (!cur.total) return prev;
+//       return prev + cur.total;
+//     }, 0);
 
-    const total =
-      +newVal.cpu.price +
-      +newVal.motherboard.price +
-      +(newVal.memory?.total ?? 0) +
-      +newVal.radiator.price +
-      hard +
-      +newVal.graphicsCard.price +
-      +newVal.powerSupply.price +
-      +newVal.chassis.price +
-      +(newVal.fan?.total ?? 0);
-    // debugger;
-    totalPrice.value = total;
-  },
-  { deep: true, immediate: true }
-);
+//     const total =
+//       +newVal.cpu.price +
+//       +newVal.motherboard.price +
+//       +(newVal.memory?.total ?? 0) +
+//       +newVal.radiator.price +
+//       hard +
+//       +newVal.graphicsCard.price +
+//       +newVal.powerSupply.price +
+//       +newVal.chassis.price +
+//       +(newVal.fan?.total ?? 0);
+//     // debugger;
+//     totalPrice.value = total;
+//   },
+//   { deep: true, immediate: true, flush: "sync" }
+// );
 
-// const stopEffect = watchEffect(() => {
-//   console.log("表单数据变化", { ...formData });
-//   const hard = formData.hardDiskList.reduce((prev, cur) => {
-//     if (!cur.total) return prev;
-//     return prev + cur.total;
-//   }, 0);
-
-//   const total =
-//     +formData.cpu.price +
-//     +formData.motherboard.price +
-//     +(formData.memory?.total ?? 0) +
-//     +formData.radiator.price +
-//     hard +
-//     +formData.graphicsCard.price +
-//     +formData.powerSupply.price +
-//     +formData.chassis.price +
-//     +(formData.fan?.total ?? 0);
-//   // debugger;
-//   totalPrice.value = total;
-// });
+// const handleCPUChange = (val: AccessoriesInfoExt, type: string) => {
+//   formData.value[type] = val;
+//   console.log(val, type, formData.value.cpu);
+// };
 
 const handleConfirm = () => {
   console.log("---> 修改后的数据", JSON.stringify(formData));
@@ -275,7 +196,6 @@ const handleConfirm = () => {
 
 onUnmounted(() => {
   // 消除负面影响
-  // stopEffect();
 });
 </script>
 

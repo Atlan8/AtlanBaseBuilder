@@ -12,12 +12,17 @@ import { useRoute } from "vue-router";
 import { useAssembleEdit } from "./hooks/useAssembleEdit";
 import AssembleInfo from "./components/assembleInfo.vue";
 
+// import jsonFileOperator from "@/utils/jsonFileOperator";
+
 const route = useRoute();
 const { formData } = useAssembleEdit();
 
 onMounted(() => {
   console.log(route.query.info);
   formData.value = JSON.parse(route.query?.info as string);
+  // jsonFileOperator("./data.json").then((res) => {
+  //   console.log("---> json 文件操作", res);
+  // });
 });
 </script>
 

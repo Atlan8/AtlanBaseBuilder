@@ -105,7 +105,6 @@ import { type PropType, onMounted, ref, computed } from "vue";
 import type { AssembleInfo } from "../service";
 import AssembleSpecification from "./assembleSpecification.vue";
 import data from "../data.json";
-import fs from "fs-extra";
 
 const props = defineProps({
   info: {
@@ -206,11 +205,6 @@ onMounted(() => {
 const handleConfirm = () => {
   console.log("---> 修改后的数据", JSON.stringify(formData.value));
   data.push(JSON.parse(JSON.stringify(formData.value)));
-  debugger;
-  fs.writeJSON("../data.json", data, (err) => {
-    console.log(err);
-    debugger;
-  });
   // console.log(process.env);
 };
 </script>

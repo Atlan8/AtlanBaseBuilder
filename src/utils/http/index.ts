@@ -1,8 +1,11 @@
 import axios from "axios";
 import { ElMessageBox, ElMessage } from "element-plus";
+import { useGlobSetting } from "@/hooks/setting/useGlobSetting";
+
+const { apiUrl } = useGlobSetting();
 
 const service = axios.create({
-  baseURL: "", // url = base url + request url
+  baseURL: apiUrl, // url = base url + request url
   timeout: 20000, // request timeout
 });
 

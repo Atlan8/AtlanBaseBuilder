@@ -15,6 +15,8 @@ export default defineConfig({
   server: {
     hmr: true, // 开启热更
     // host: "192.168.1.2",
+    host: true,
+    port: 3100,
   },
   plugins: [
     vue(),

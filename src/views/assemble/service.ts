@@ -32,12 +32,15 @@ export interface AssembleInfo {
 export const useService = () => {
   const assembleList = ref<AssembleInfo[]>();
   onMounted(() => {
-    http("./src/views/assemble/data.json").then((res) => {
+    http("http://localhost:3100/src/views/assemble/data.json").then((res) => {
       console.log("---> 请求数据: ", res);
       const { errorCode, data } = res;
       if (errorCode === 0) {
         assembleList.value = data;
       }
+    });
+    http("/api/getAssembleList").then((res) => {
+      console.warn("---> 服务器返回的数据", res);
     });
   });
 

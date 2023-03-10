@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ElMessageBox, ElMessage } from "element-plus";
 import { useGlobSetting } from "@/hooks/setting/useGlobSetting";
+import type { ResponseData } from "./type";
 
 const { apiUrl } = useGlobSetting();
 
@@ -13,7 +14,7 @@ service.interceptors.request.use(
   (config) => {
     return config;
   },
-  (error) => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 );
@@ -31,21 +32,21 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   (response) => {
-    const res = response.data;
+    const res: ResponseData<any> = response.data;
 
-    console.log(res);
+    // console.log(res);
     if (!Reflect.has(res, "errorCode")) {
-      return {
+      return {...response, data: {
         errorCode: 0,
-        msg: "",
+        msg: '',
         data: res,
-      };
+      }};
     }
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.errorCode !== 0) {
+    if (res.errorCode !== 10000) {
       ElMessage.error({
-        message: res.message || "Error",
+        message: res.msg || "Error",
         type: "error",
         duration: 5 * 1000,
       });
@@ -71,15 +72,15 @@ service.interceptors.response.use(
           // });
         });
       }
-      return Promise.reject(new Error(res.message || "Error"));
+      return Promise.reject(new Error(res.msg || "Error"));
     } else {
-      return res;
+      return {...response, data: res};
     }
   },
   (error) => {
     console.log("err" + error); // for debug
     ElMessage({
-      message: error.message,
+      message: error.msg,
       type: "error",
       duration: 5 * 1000,
     });

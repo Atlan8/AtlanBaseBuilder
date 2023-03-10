@@ -1,4 +1,4 @@
-import { type PropType, onMounted, ref, computed, defineProps } from "vue";
+import { type PropType, onMounted, ref, computed, defineProps, type ExtractPropTypes } from "vue";
 import { useRouter } from "vue-router";
 import type { AssembleInfo } from "../service";
 
@@ -6,21 +6,21 @@ import type { AssembleInfo } from "../service";
  * 装机详情的hook
  * @returns 
  */
-export const useAssembleInfo = () => {
+export const useAssembleInfo = (props: Readonly<ExtractPropTypes<{
+  info: {
+      type: PropType<AssembleInfo>;
+      required: true;
+  };
+  isForm: {
+      type: BooleanConstructor;
+      default: boolean;
+  };
+}>>) => {
 
   const router = useRouter();
   
 
-  const props = defineProps({
-    info: {
-      type: Object as PropType<AssembleInfo>,
-      required: true,
-    },
-    isForm: {
-      type: Boolean,
-      default: false,
-    },
-  });
+  
 
   let formData = ref<AssembleInfo>();
 

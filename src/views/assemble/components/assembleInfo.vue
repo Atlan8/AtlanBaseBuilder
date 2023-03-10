@@ -103,14 +103,26 @@
 <script lang="ts" setup>
 import { useAssembleInfo } from "../hooks/useAssembleInfo";
 import AssembleSpecification from "./assembleSpecification.vue";
+import type {  PropType } from "vue";
+import type { AssembleInfo } from "../service";
+
+const props = defineProps({
+    info: {
+      type: Object as PropType<AssembleInfo>,
+      required: true,
+    },
+    isForm: {
+      type: Boolean,
+      default: false,
+    },
+  });
 
 const {
-  props,
   formData,
   totalPrice,
   handleConfirm,
   handleGoBack
-} = useAssembleInfo()
+} = useAssembleInfo(props)
 </script>
 
 <style lang="scss" scoped></style>

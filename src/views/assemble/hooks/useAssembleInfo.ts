@@ -4,6 +4,7 @@ import type { AssembleInfo } from "../service";
 
 /**
  * 装机详情的hook
+ * @param props 组件的props传参，需要在组件中定义，不能在hook中定义，会报错
  * @returns 
  */
 export const useAssembleInfo = (props: Readonly<ExtractPropTypes<{

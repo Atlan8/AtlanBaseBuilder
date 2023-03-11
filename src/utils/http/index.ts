@@ -12,6 +12,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
+    // config.headers['Cache-Control'] = 'no-cache';
     return config;
   },
   (error: AxiosError) => {

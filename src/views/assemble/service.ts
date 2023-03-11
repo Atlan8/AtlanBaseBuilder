@@ -1,3 +1,4 @@
+import { getAssembleListById } from "@/api/assemble";
 import http from "@/utils/http/index";
 import { onMounted, ref } from "vue";
 
@@ -45,6 +46,9 @@ export const useService = () => {
         assembleList.value = data
       }
     });
+    getAssembleListById({id: 10001}).then(res => {
+      console.log('--->id: ', res)
+    })
   });
 
   return {

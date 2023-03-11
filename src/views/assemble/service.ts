@@ -1,5 +1,4 @@
-import { getAssembleListById } from "@/api/assemble";
-import http from "@/utils/http/index";
+import { getAssembleList, getAssembleListById } from "@/api/assemble";
 import { onMounted, ref } from "vue";
 
 export interface AccessoriesInfo {
@@ -40,14 +39,14 @@ export const useService = () => {
     //     assembleList.value = data;
     //   }
     // });
-    http("/api/getAssembleList").then((res) => {
+    getAssembleList().then((res) => {
       const {data, errorCode} = res.data
       if (errorCode === 10000) {
         assembleList.value = data
       }
     });
     getAssembleListById({id: 10001}).then(res => {
-      console.log('--->id: ', res)
+      console.log('--->id: ', res.data.data)
     })
   });
 

@@ -24,7 +24,7 @@ export const useAssemble = () => {
       router.push({
         path: PageEnum.ASSEMBLE_EDIT,
         query: {
-          info: JSON.stringify(data),
+          assembleId: data.id,
         },
       });
       return;

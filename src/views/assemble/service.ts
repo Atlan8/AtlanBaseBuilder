@@ -45,9 +45,6 @@ export const useService = () => {
         assembleList.value = data
       }
     });
-    getAssembleListById({id: 10001}).then(res => {
-      console.log('--->id: ', res.data.data)
-    })
   });
 
   return {

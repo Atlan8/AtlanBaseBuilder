@@ -26,3 +26,11 @@ export const getAssembleListById = ({id}: {id: number}): Promise<AxiosResponse<R
     params: {id: id}
   })
 }
+
+export const editAssembleInfo = (data: AssembleInfo) => {
+  return http({
+    url: '/api/assemble/edit',
+    method: 'post',
+    data: data
+  })
+}

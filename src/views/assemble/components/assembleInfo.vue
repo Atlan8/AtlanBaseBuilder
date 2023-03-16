@@ -107,22 +107,24 @@ import type {  PropType } from "vue";
 import type { AssembleInfo } from "../service";
 
 const props = defineProps({
-    info: {
-      type: Object as PropType<AssembleInfo>,
-      required: true,
-    },
-    isForm: {
-      type: Boolean,
-      default: false,
-    },
-  });
+  info: {
+    type: Object as PropType<AssembleInfo>,
+    required: true,
+  },
+  isForm: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(['confirm'])
 
 const {
   formData,
   totalPrice,
   handleConfirm,
   handleGoBack
-} = useAssembleInfo(props)
+} = useAssembleInfo({props, emit})
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,6 +1,6 @@
 import { editAssembleInfo } from "@/api/assemble";
 import { ElMessage } from "element-plus";
-import { type PropType, onMounted, ref, computed, defineProps, type ExtractPropTypes } from "vue";
+import { type PropType, onMounted, ref, computed, type ExtractPropTypes } from "vue";
 import { useRouter } from "vue-router";
 import type { AssembleInfo } from "../service";
 
@@ -9,21 +9,19 @@ import type { AssembleInfo } from "../service";
  * @param props 组件的props传参，需要在组件中定义，不能在hook中定义，会报错
  * @returns 
  */
-export const useAssembleInfo = (props: Readonly<ExtractPropTypes<{
+export const useAssembleInfo = ({props, emit}:{props: Readonly<ExtractPropTypes<{
   info: {
-      type: PropType<AssembleInfo>;
-      required: true;
+    type: PropType<AssembleInfo>;
+    required: true;
   };
   isForm: {
-      type: BooleanConstructor;
-      default: boolean;
+    type: BooleanConstructor;
+    default: boolean;
   };
-}>>) => {
+}>>
+emit: (event: "confirm", ...args: any[]) => void}) => {
 
   const router = useRouter();
-  
-
-  
 
   let formData = ref<AssembleInfo>();
 
@@ -120,6 +118,7 @@ export const useAssembleInfo = (props: Readonly<ExtractPropTypes<{
     }
     editAssembleInfo(formData.value)
     // console.log(process.env);
+    emit('confirm', '点击确定')
   };
 
   const handleGoBack = () => {

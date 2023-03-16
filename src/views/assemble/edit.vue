@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <AssembleInfo v-if="!!formData" :info="formData" :is-form="true" />
+      <AssembleInfo v-if="!!formData" :info="formData" :is-form="true" @confirm="handleConfirm" />
     </div>
   </div>
 </template>
@@ -16,6 +16,10 @@ import AssembleInfo from "./components/assembleInfo.vue";
 
 const route = useRoute();
 const { formData,getData } = useAssembleEdit();
+
+const handleConfirm = (val: string) => {
+  console.log('click me: ',val)
+}
 
 onMounted(() => {
   // console.log(route.query.info);

@@ -1,4 +1,6 @@
 import { getAssembleList, getAssembleListById } from "@/api/assemble";
+import { isNumber } from "@/utils/test";
+import { ElMessage } from "element-plus";
 import { onMounted, ref } from "vue";
 
 export interface AccessoriesInfo {
@@ -31,6 +33,26 @@ export interface AssembleInfo {
 }
 
 export const testAssembleInfo =(data: AssembleInfo): boolean => {
+  if (!data) {
+    ElMessage.error('装机表单不能为空')
+    return false
+  }
+  if (!data.name) {
+    ElMessage.error('装机方案名称不能为空')
+    return false
+  }
+  if (!data.cpu.name) {
+    ElMessage.error('请输入cpu名称')
+    return false
+  }
+  if (!data.cpu.price) {
+    ElMessage.error('请输入cpu价格')
+    return false
+  }
+  if(!isNumber(data.cpu.price)) {
+    ElMessage.error('cpu价格必须是数字')
+    return false
+  }
   return true
 }
 

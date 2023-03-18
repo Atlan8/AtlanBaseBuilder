@@ -2,7 +2,7 @@ import { editAssembleInfo } from "@/api/assemble";
 import { ElMessage } from "element-plus";
 import { type PropType, onMounted, ref, computed, type ExtractPropTypes } from "vue";
 import { useRouter } from "vue-router";
-import type { AssembleInfo } from "../service";
+import { testAssembleInfo, type AssembleInfo } from "../service";
 import type { AssembleInfoProps } from "../type";
 
 /**
@@ -105,6 +105,9 @@ export const useAssembleInfo = ({props, emit}:AssembleInfoProps) => {
     console.log("---> 修改后的数据", JSON.stringify(formData.value));
     if (!formData.value) {
       ElMessage.error('装机表单不能为空')
+      return
+    }
+    if (!testAssembleInfo(formData.value)) {
       return
     }
     editAssembleInfo(formData.value)

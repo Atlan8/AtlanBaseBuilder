@@ -33,24 +33,47 @@ export interface AssembleInfo {
 }
 
 export const testAssembleInfo =(data: AssembleInfo): boolean => {
+  debugger
   if (!data) {
-    ElMessage.error('装机表单不能为空')
+    ElMessage({
+      message: '装机表单不能为空',
+      type: 'error',
+    })
     return false
   }
   if (!data.name) {
-    ElMessage.error('装机方案名称不能为空')
+    ElMessage({
+      message: '装机方案名称不能为空',
+      type: 'error'
+    })
     return false
   }
   if (!data.cpu.name) {
-    ElMessage.error('请输入cpu名称')
+    ElMessage({
+      message: '请输入cpu名称',
+      type: 'error'
+    })
     return false
   }
   if (!data.cpu.price) {
-    ElMessage.error('请输入cpu价格')
+    ElMessage({
+      message: '请输入cpu价格',
+      type: 'error'
+    })
     return false
   }
   if(!isNumber(data.cpu.price)) {
-    ElMessage.error('cpu价格必须是数字')
+    ElMessage({
+      message: 'cpu价格必须是数字',
+      type: 'error'
+    })
+    return false
+  }
+  if (data.cpu.price < 1) {
+    ElMessage({
+      message: '请输入正确的cpu价格',
+      type: 'error'
+    })
     return false
   }
   return true

@@ -2,7 +2,7 @@ import { getAssembleList, getAssembleListById } from "@/api/assemble";
 import { onMounted, ref } from "vue";
 
 export interface AccessoriesInfo {
-  id: number;
+  id?: number;
   name: string; // CPU名称
   price: number; // CPU单价
   link: string; // CPU购买链接
@@ -14,7 +14,7 @@ export interface AccessoriesInfoExt extends AccessoriesInfo {
 }
 
 export interface AssembleInfo {
-  id: number;
+  id?: number;
   name: string; // 方案名
   cpu: AccessoriesInfo; // CPU
   motherboard: AccessoriesInfo; // 主板
@@ -28,6 +28,10 @@ export interface AssembleInfo {
   total: number; // 总价
   timestramp: number; // 创建时间戳
   datetime: string; // 创建时间
+}
+
+export const testAssembleInfo =(data: AssembleInfo): boolean => {
+  return true
 }
 
 export const useService = () => {

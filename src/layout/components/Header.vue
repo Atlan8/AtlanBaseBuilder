@@ -4,7 +4,7 @@
       <div class="logoView">
         <div class="titleView">
           <div class="title">MAA Copilot</div>
-          <el-tag color="rgba(200, 118, 25, 0.1)" style="color: #935610"
+          <el-tag color="rgba(200, 118, 25, 0.1)" style="color: var(--vt-t-logo-dark)"
             >Beta</el-tag
           >
         </div>
@@ -15,6 +15,7 @@
           mode="horizontal"
           :router="true"
           class="menuList"
+          te
           @select="handleSelect"
         >
           <div
@@ -81,6 +82,27 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
+
+.el-menu-item {
+  color: var(--them-nav-text);
+}
+.el-menu-item.is-active {
+  color: var(--them-nav-select);
+}
+
+.el-sub-menu {
+  // 深度选择器 Vue3只能使用这种写法，其他写法会报错
+  :deep(.el-sub-menu__title) {
+    color: var(--them-nav-text);
+  }
+}
+
+.el-sub-menu.is-active {
+  :deep(.el-sub-menu__title) {
+    color: var(--them-nav-select) !important;
+  }
+}
+
 @mixin flexRowCenter {
   display: flex;
   align-items: center;
@@ -92,8 +114,8 @@ defineExpose({
 }
 
 .layoutNav {
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
-  color: #333;
+  background-color: var(--them-nav-background);
+  color: var(--them-nav-title);
   padding: 10px 30px;
   @include flexRowCenter();
 
@@ -116,7 +138,7 @@ defineExpose({
     }
     .menuList {
       width: 100%;
-      color: #333;
+      color: var(--them-nav-text);
       background-color: transparent;
       border: none;
     }

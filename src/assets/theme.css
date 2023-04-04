@@ -1,0 +1,37 @@
+:root {
+  --vt-c-text-dark: #fff;
+  --vt-c-dark: rgba(9, 14, 40, 1);
+
+  --vt-c-desc-dark: rgba(248, 210, 196, 1);
+  --vt-c-bg-select-dark: rgba(74, 72, 146, 1);
+
+  --vt-c-content-dark: rgba(32, 40, 80, 1);
+  --vt-c-more-dark: rgba(200, 120, 226, 1);
+
+  --vt-n-bg-dark: rgba(21, 29, 69, 1);
+  --vt-n-text-dark: rgba(52, 63, 104, 1);
+  --vt-n-select-dark: rgba(220, 129, 243, 1);
+
+  --vt-t-desc-dark: rgba(139, 148, 172, 1);
+  --vt-t-level-dark: rgba(187, 111, 212);
+
+  --vt-r-bg-dark: rgba(219, 130, 245, 1);
+
+  --vt-t-logo-dark: #f1f1f1;
+}
+
+:root {
+  --them-nav-background: var(--vt-n-bg-dark);
+  --them-nav-text: var(--vt-n-text-dark);
+  --them-nav-select: var(--vt-n-select-dark);
+  --them-nav-title: var(--vt-c-text-dark);
+
+  --them-title: var(--vt-c-text-dark);
+  --them-title-desc: var(--vt-t-desc-dark);
+
+  --them-card-bg: var(--vt-n-bg-dark);
+  --them-card-select: var(--vt-c-bg-select-dark);
+  --them-card-desc: var(--vt-c-desc-dark);
+
+  --them-content-box: var(--vt-t-level-dark)
+}

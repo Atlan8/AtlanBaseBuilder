@@ -54,5 +54,53 @@
     "total": 9099,
     "timestramp": 1677334177023,
     "datetime": "2023-02-25 22:19"
+  },
+  {
+    "id": 0,
+    "name": "13600+魔鹰4080",
+    "cpu": { "name": "i5 13600KF", "price": 1775, "link": "" },
+    "motherboard": {
+      "name": "微星 PRO Z790-P WIFI D5",
+      "price": 1450,
+      "link": ""
+    },
+    "memory": {
+      "name": "金百达 刃 6400MHz D5",
+      "price": 360,
+      "count": 2,
+      "total": 720,
+      "link": ""
+    },
+    "radiator": { "name": "利民 PA120", "price": 178, "link": "" },
+    "hardDiskList": [
+      {
+        "name": "SOLIDIGM P44 Pro",
+        "price": 654,
+        "count": 1,
+        "total": 654,
+        "link": ""
+      }
+    ],
+    "graphicsCard": {
+      "name": "七彩虹 RTX4080 AD OC",
+      "price": 8699,
+      "link": ""
+    },
+    "powerSupply": {
+      "name": "FOCUS GX850 金牌全模组",
+      "price": 929,
+      "link": ""
+    },
+    "chassis": { "name": "先马新境界 黑色", "price": 379, "link": "" },
+    "fan": {
+      "name": "玩嘉 棱镜二代",
+      "price": 23,
+      "count": 7,
+      "total": 161,
+      "link": ""
+    },
+    "total": 14945,
+    "timestramp": 0,
+    "datetime": ""
   }
 ]

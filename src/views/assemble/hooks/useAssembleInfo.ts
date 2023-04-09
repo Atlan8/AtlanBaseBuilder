@@ -1,6 +1,12 @@
 import { editAssembleInfo } from "@/api/assemble";
 import { ElMessage } from "element-plus";
-import { type PropType, onMounted, ref, computed, type ExtractPropTypes } from "vue";
+import {
+  type PropType,
+  onMounted,
+  ref,
+  computed,
+  type ExtractPropTypes,
+} from "vue";
 import { useRouter } from "vue-router";
 import { testAssembleInfo, type AssembleInfo } from "../service";
 import type { AssembleInfoProps } from "../type";
@@ -8,10 +14,9 @@ import type { AssembleInfoProps } from "../type";
 /**
  * 装机详情的hook
  * @param props 组件的props传参，需要在组件中定义，不能在hook中定义，会报错
- * @returns 
+ * @returns
  */
-export const useAssembleInfo = ({props, emit}:AssembleInfoProps) => {
-
+export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
   const router = useRouter();
 
   let formData = ref<AssembleInfo>();
@@ -53,12 +58,12 @@ export const useAssembleInfo = ({props, emit}:AssembleInfoProps) => {
       fanPrice;
     // debugger;
     // 动态更新数据
-    formData.value.total = total
+    formData.value.total = total;
     return total;
   });
 
   onMounted(() => {
-    formData.value = props.info;
+    initFormData();
     console.log(JSON.stringify(props.info));
     // totalPrice.value = props.info.total;
   });
@@ -104,26 +109,89 @@ export const useAssembleInfo = ({props, emit}:AssembleInfoProps) => {
   const handleConfirm = () => {
     console.log("---> 修改后的数据", JSON.stringify(formData.value));
     if (!formData.value) {
-      ElMessage.error('装机表单不能为空')
-      return
+      ElMessage.error("装机表单不能为空");
+      return;
     }
     if (!testAssembleInfo(formData.value)) {
-      return
+      return;
     }
-    editAssembleInfo(formData.value)
+    editAssembleInfo(formData.value);
     // console.log(process.env);
-    emit('confirm', '点击确定')
+    emit("confirm", "点击确定");
   };
 
   const handleGoBack = () => {
-    router.go(-1)
-  }
+    router.go(-1);
+  };
+
+  const initFormData = () => {
+    if (!props.info) {
+      formData.value = {
+        id: 0,
+        name: "",
+        cpu: { name: "", price: 0, link: "" },
+        motherboard: {
+          name: "",
+          price: 0,
+          link: "",
+        },
+        memory: {
+          name: "",
+          price: 0,
+          count: 0,
+          total: 0,
+          link: "",
+        },
+        radiator: {
+          name: "",
+          price: 0,
+          link: "",
+        },
+        hardDiskList: [
+          {
+            name: "",
+            price: 0,
+            count: 0,
+            total: 0,
+            link: "",
+          },
+        ],
+        graphicsCard: {
+          name: "",
+          price: 0,
+          link: "",
+        },
+        powerSupply: {
+          name: "",
+          price: 0,
+          link: "",
+        },
+        chassis: {
+          name: "",
+          price: 0,
+          link: "",
+        },
+        fan: {
+          name: "",
+          price: 0,
+          count: 0,
+          total: 0,
+          link: "",
+        },
+        total: 0,
+        timestramp: 0,
+        datetime: "",
+      };
+      return;
+    }
+    formData.value = props.info;
+  };
 
   return {
     props,
     formData,
     totalPrice,
     handleConfirm,
-    handleGoBack
-  }
-}
+    handleGoBack,
+  };
+};

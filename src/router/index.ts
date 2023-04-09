@@ -37,6 +37,12 @@ export const customRoutes: RouteRecordRaw[] = [
         meta: { hidden: true },
         component: () => import("@/views/assemble/edit.vue"),
       },
+      {
+        path: "/assemble/create",
+        name: "create_assemble",
+        meta: {hidden: true},
+        component: () => import('@/views/assemble/edit.vue')
+      }
     ],
   },
   {

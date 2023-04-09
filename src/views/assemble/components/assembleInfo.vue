@@ -8,7 +8,7 @@
             style="width: 250px"
             v-show="props.isForm"
           ></el-input>
-          <div v-show="!props.isForm">{{ props.info.name }}</div>
+          <div v-show="!props.isForm">{{ formData.name }}</div>
         </el-form-item>
         <el-form-item label="CPU">
           <div>
@@ -88,7 +88,7 @@
           </div>
         </el-form-item>
         <el-form-item label="总价">
-          <div v-show="!props.isForm">￥{{ props.info.total }}</div>
+          <div v-show="!props.isForm">￥{{ formData.total }}</div>
           <div v-show="!!props.isForm">￥{{ totalPrice }}</div>
         </el-form-item>
         <el-form-item>
@@ -103,12 +103,12 @@
 <script lang="ts" setup>
 import { useAssembleInfo } from "../hooks/useAssembleInfo";
 import AssembleSpecification from "./assembleSpecification.vue";
-import type {  PropType } from "vue";
+import type { PropType } from "vue";
 import type { AssembleInfo } from "../service";
 
 const props = defineProps({
   info: {
-    type: Object as PropType<AssembleInfo>,
+    type: Object as PropType<AssembleInfo> | undefined,
     required: true,
   },
   isForm: {
@@ -117,14 +117,12 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['confirm'])
+const emit = defineEmits(["confirm"]);
 
-const {
-  formData,
-  totalPrice,
-  handleConfirm,
-  handleGoBack
-} = useAssembleInfo({props, emit})
+const { formData, totalPrice, handleConfirm, handleGoBack } = useAssembleInfo({
+  props,
+  emit,
+});
 </script>
 
 <style lang="scss" scoped></style>

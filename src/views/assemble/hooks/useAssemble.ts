@@ -14,6 +14,15 @@ export const useAssemble = () => {
   const assembleInfo = ref<AssembleInfo>();
   const isEditInfo = ref(false);
 
+  /**
+   * 前往创建表单
+   */
+  const handleToCreate = () => {
+    router.push({
+      path: PageEnum.ASSEMBLE_CREATE,
+    });
+  };
+
   const handleShowInfo = (data: AssembleInfo, isForm: boolean = false) => {
     if (isForm) {
       // 非命名路由，使用query传参，命名路由使用params传参
@@ -46,5 +55,6 @@ export const useAssemble = () => {
     isEditInfo,
     handleShowInfo,
     handleClose,
+    handleToCreate,
   };
 };

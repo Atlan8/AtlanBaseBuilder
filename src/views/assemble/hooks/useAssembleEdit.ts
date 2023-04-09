@@ -10,18 +10,17 @@ export const useAssembleEdit = () => {
    *  获取装机详情
    * @param params
    */
-  const getData = ({id}: {id: number}) => {
-    getAssembleListById({id: id}).then(res => {
-      console.log('--->id: ', res.data.data)
-      const {data, errorCode} = res.data
+  const getData = ({ id }: { id: number }) => {
+    getAssembleListById({ id: id }).then((res) => {
+      console.log("--->id: ", res.data.data);
+      const { data, errorCode } = res.data;
       if (errorCode === 10000) {
-        formData.value = data
+        formData.value = data;
       }
-    })
-  }
-
+    });
+  };
   return {
     formData,
-    getData
+    getData,
   };
 };

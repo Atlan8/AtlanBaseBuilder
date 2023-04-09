@@ -4,7 +4,7 @@
       <div class="header">
         <el-input placeholder="搜索" style="width: 200px; margin-right: 15px" />
         <el-button type="primary">搜索</el-button>
-        <el-button type="primary">添加</el-button>
+        <el-button type="primary" @click="handleToCreate">添加</el-button>
       </div>
       <div class="tableList">
         <el-table :data="assembleList">
@@ -188,6 +188,7 @@ const {
   isEditInfo,
   handleShowInfo,
   handleClose,
+  handleToCreate,
 } = useAssemble();
 </script>
 

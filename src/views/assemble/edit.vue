@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <AssembleInfo v-if="!!formData" :info="formData" :is-form="true" @confirm="handleConfirm" />
+      <AssembleInfo :info="formData" :is-form="true" @confirm="handleConfirm" />
     </div>
   </div>
 </template>
@@ -15,11 +15,11 @@ import AssembleInfo from "./components/assembleInfo.vue";
 // import jsonFileOperator from "@/utils/jsonFileOperator";
 
 const route = useRoute();
-const { formData,getData } = useAssembleEdit();
+const { formData, getData } = useAssembleEdit();
 
 const handleConfirm = (val: string) => {
-  console.log('click me: ',val)
-}
+  console.log("click me: ", val);
+};
 
 onMounted(() => {
   // console.log(route.query.info);
@@ -27,7 +27,8 @@ onMounted(() => {
   // jsonFileOperator("./data.json").then((res) => {
   //   console.log("---> json 文件操作", res);
   // });
-  getData({id: +(route.query?.assembleId ?? 0)})
+  if (!route.query.assemble) return;
+  getData({ id: +(route.query?.assembleId ?? 0) });
 });
 </script>
 

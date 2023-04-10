@@ -2,8 +2,12 @@
   <div>
     <div class="container">
       <div class="header">
-        <el-input placeholder="搜索" style="width: 200px; margin-right: 15px" />
-        <el-button type="primary">搜索</el-button>
+        <el-input
+          v-model="searchValue"
+          placeholder="搜索"
+          style="width: 200px; margin-right: 15px"
+        />
+        <el-button type="primary" @click="handleSearch">搜索</el-button>
         <el-button type="primary" @click="handleToCreate">添加</el-button>
       </div>
       <div class="tableList">
@@ -182,6 +186,7 @@ import AssembleInfo from "./components/assembleInfo.vue";
 import AssembleSpecification from "./components/assembleSpecification.vue";
 
 const {
+  searchValue,
   assembleList,
   assembleInfo,
   showInfoDialog,
@@ -189,6 +194,7 @@ const {
   handleShowInfo,
   handleClose,
   handleToCreate,
+  handleSearch,
 } = useAssemble();
 </script>
 

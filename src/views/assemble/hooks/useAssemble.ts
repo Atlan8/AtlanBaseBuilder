@@ -5,14 +5,23 @@ import { PageEnum } from "@/enum/pageEnum";
 import { ElMessage } from "element-plus";
 
 export const useAssemble = () => {
-  const { assembleList } = useService();
+  const { assembleList, searchAssemble } = useService();
 
   // 路由跳转时，先获取router对象，跟Vue2的this.$router类似
   const router = useRouter();
 
+  const searchValue = ref("");
+
   const showInfoDialog = ref(false);
   const assembleInfo = ref<AssembleInfo>();
   const isEditInfo = ref(false);
+
+  /**
+   * 搜索装机表单
+   */
+  const handleSearch = () => {
+    searchAssemble({ keyword: searchValue.value });
+  };
 
   /**
    * 前往创建表单
@@ -49,6 +58,7 @@ export const useAssemble = () => {
   };
 
   return {
+    searchValue,
     assembleList,
     showInfoDialog,
     assembleInfo,
@@ -56,5 +66,6 @@ export const useAssemble = () => {
     handleShowInfo,
     handleClose,
     handleToCreate,
+    handleSearch,
   };
 };

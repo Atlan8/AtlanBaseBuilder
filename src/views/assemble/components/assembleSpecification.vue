@@ -101,6 +101,7 @@ watch(
 );
 
 onMounted(() => {
+  if (typeof props.item !== "object") return;
   showCount.value = Reflect.has(props.item, "count");
   showTotal.value = Reflect.has(props.item, "total");
 });

@@ -108,7 +108,7 @@ import type { AssembleInfo } from "../service";
 
 const props = defineProps({
   info: {
-    type: Object as PropType<AssembleInfo> | undefined,
+    type: Object as PropType<AssembleInfo>,
     required: true,
   },
   isForm: {

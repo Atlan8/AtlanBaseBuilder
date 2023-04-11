@@ -1,10 +1,12 @@
 <template>
-  <div style="position: fixed; z-index: 999; width: 100vw" ref="viewRef">
+  <div style="position: fixed; z-index: 99; width: 100vw" ref="viewRef">
     <nav class="layoutNav shadow">
       <div class="logoView">
         <div class="titleView">
           <div class="title">MAA Copilot</div>
-          <el-tag color="rgba(200, 118, 25, 0.1)" style="color: var(--vt-t-logo-dark)"
+          <el-tag
+            color="rgba(200, 118, 25, 0.1)"
+            style="color: var(--vt-t-logo-dark)"
             >Beta</el-tag
           >
         </div>
@@ -82,7 +84,6 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-
 .el-menu-item {
   color: var(--them-nav-text);
 }

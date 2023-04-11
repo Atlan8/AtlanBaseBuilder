@@ -45,6 +45,7 @@ const { navHeight } = storeToRefs(store);
   min-height: 100vh;
   box-sizing: border-box;
   background-color: #fff;
+  position: relative;
 
   .layoutNav {
     background-color: rgb(244 244 245 / var(--tw-bg-opacity));

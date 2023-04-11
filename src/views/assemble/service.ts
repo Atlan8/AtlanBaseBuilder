@@ -33,7 +33,6 @@ export interface AssembleInfo {
 }
 
 export const testAssembleInfo = (data: AssembleInfo): boolean => {
-  debugger;
   if (!data) {
     ElMessage({
       message: "装机表单不能为空",

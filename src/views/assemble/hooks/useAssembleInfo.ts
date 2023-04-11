@@ -1,4 +1,4 @@
-import { editAssembleInfo } from "@/api/assemble";
+import { createAssemble, editAssembleInfo } from "@/api/assemble";
 import { ElMessage } from "element-plus";
 import {
   type PropType,
@@ -7,7 +7,7 @@ import {
   computed,
   type ExtractPropTypes,
 } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { testAssembleInfo, type AssembleInfo } from "../service";
 import type { AssembleInfoProps } from "../type";
 
@@ -18,6 +18,7 @@ import type { AssembleInfoProps } from "../type";
  */
 export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
   const router = useRouter();
+  const { query } = useRoute();
 
   let formData = ref<AssembleInfo>();
 
@@ -115,7 +116,12 @@ export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
     if (!testAssembleInfo(formData.value)) {
       return;
     }
-    editAssembleInfo(formData.value);
+
+    if (query.assembleId) {
+      editAssembleInfo(formData.value);
+    } else {
+      createAssemble(formData.value);
+    }
     // console.log(process.env);
     emit("confirm", "点击确定");
   };

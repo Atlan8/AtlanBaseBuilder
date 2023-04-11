@@ -34,9 +34,22 @@ export const getAssembleListById = ({
   });
 };
 
+/**
+ * 编辑配置单详情
+ * @param data
+ * @returns
+ */
 export const editAssembleInfo = (data: AssembleInfo) => {
   return http({
     url: "/api/assemble/edit",
+    method: "post",
+    data: data,
+  });
+};
+
+export const createAssemble = (data: AssembleInfo) => {
+  return http({
+    url: "/api/asemble/create",
     method: "post",
     data: data,
   });

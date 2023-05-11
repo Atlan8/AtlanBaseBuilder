@@ -26,6 +26,8 @@ getData();
 .homeView {
   margin: 0 auto;
   @include flexCenter;
+  background-color: #0c5ba9;
+  height: 100%;
   .card {
     width: 20rem;
     background-color: #fff;

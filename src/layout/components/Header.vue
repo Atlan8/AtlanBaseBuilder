@@ -1,7 +1,7 @@
 <template>
   <div style="position: fixed; z-index: 99; width: 100vw" ref="viewRef">
     <nav class="layoutNav shadow">
-      <div class="logoView">
+      <div class="logoView" @click="handleToHome">
         <div class="titleView">
           <div class="title">MAA Copilot</div>
           <el-tag
@@ -59,17 +59,27 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { PageEnum } from "@/enum/pageEnum";
 import { customRoutes } from "@/router";
 import { useDeviceStore } from "@/stores/device";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const store = useDeviceStore();
+
+const router = useRouter();
 
 const viewRef = ref();
 const navRect = ref<DOMRect>();
 
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
+};
+
+const handleToHome = () => {
+  router.push({
+    path: PageEnum.HOME,
+  });
 };
 
 onMounted(() => {
@@ -122,6 +132,9 @@ defineExpose({
 
   .logoView {
     @include flexRowCenter();
+    cursor: pointer;
+    user-select: none;
+
     .splitVertical {
       width: 1px;
       height: 24px;

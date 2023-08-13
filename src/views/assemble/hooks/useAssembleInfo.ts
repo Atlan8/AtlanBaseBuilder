@@ -14,7 +14,7 @@ export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
   const router = useRouter();
   const { query } = useRoute();
 
-  let formData = ref<AssembleInfo>();
+  const formData = ref<AssembleInfo>();
 
   // const totalPrice = ref(0);
 

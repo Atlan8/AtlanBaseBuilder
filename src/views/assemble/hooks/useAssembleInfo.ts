@@ -1,15 +1,9 @@
-import { createAssemble, editAssembleInfo } from "@/api/assemble";
-import { ElMessage } from "element-plus";
-import {
-  type PropType,
-  onMounted,
-  ref,
-  computed,
-  type ExtractPropTypes,
-} from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { testAssembleInfo, type AssembleInfo } from "../service";
-import type { AssembleInfoProps } from "../type";
+import { createAssemble, editAssembleInfo } from '@/api/assemble';
+import { ElMessage } from 'element-plus';
+import { type PropType, onMounted, ref, computed, type ExtractPropTypes } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { testAssembleInfo, type AssembleInfo } from '../service';
+import type { AssembleInfoProps } from '../type';
 
 /**
  * 装机详情的hook
@@ -36,27 +30,16 @@ export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
 
     const cpuPrice = +formData.value.cpu.price;
     const motherboardPrice = +formData.value.motherboard.price;
-    const memoryPrice =
-      +(formData.value.memory?.count ?? 0) * +formData.value.memory.price;
+    const memoryPrice = +(formData.value.memory?.count ?? 0) * +formData.value.memory.price;
     const radiatorPrice = +formData.value.radiator.price;
     const graphicsCardPrice = +formData.value.graphicsCard.price;
     const powerSupplyPrice = +formData.value.powerSupply.price;
-    const fanPrice =
-      +(formData.value.fan?.count ?? 0) * +formData.value.fan.price;
+    const fanPrice = +(formData.value.fan?.count ?? 0) * +formData.value.fan.price;
     const chassisPrice = +formData.value.chassis.price;
 
-    console.log("表单数据变化", formData);
+    console.log('表单数据变化', formData);
 
-    const total =
-      hard +
-      cpuPrice +
-      motherboardPrice +
-      memoryPrice +
-      radiatorPrice +
-      graphicsCardPrice +
-      powerSupplyPrice +
-      chassisPrice +
-      fanPrice;
+    const total = hard + cpuPrice + motherboardPrice + memoryPrice + radiatorPrice + graphicsCardPrice + powerSupplyPrice + chassisPrice + fanPrice;
     // debugger;
     // 动态更新数据
     formData.value.total = total;
@@ -108,9 +91,9 @@ export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
   // };
 
   const handleConfirm = () => {
-    console.log("---> 修改后的数据", JSON.stringify(formData.value));
+    console.log('---> 修改后的数据', JSON.stringify(formData.value));
     if (!formData.value) {
-      ElMessage.error("装机表单不能为空");
+      ElMessage.error('装机表单不能为空');
       return;
     }
     if (!testAssembleInfo(formData.value)) {
@@ -123,7 +106,7 @@ export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
       createAssemble(formData.value);
     }
     // console.log(process.env);
-    emit("confirm", "点击确定");
+    emit('confirm', '点击确定');
   };
 
   const handleGoBack = () => {
@@ -134,59 +117,59 @@ export const useAssembleInfo = ({ props, emit }: AssembleInfoProps) => {
     if (!props.info) {
       formData.value = {
         id: 0,
-        name: "",
-        cpu: { name: "", price: 0, link: "" },
+        name: '',
+        cpu: { name: '', price: 0, link: '' },
         motherboard: {
-          name: "",
+          name: '',
           price: 0,
-          link: "",
+          link: '',
         },
         memory: {
-          name: "",
+          name: '',
           price: 0,
           count: 0,
           total: 0,
-          link: "",
+          link: '',
         },
         radiator: {
-          name: "",
+          name: '',
           price: 0,
-          link: "",
+          link: '',
         },
         hardDiskList: [
           {
-            name: "",
+            name: '',
             price: 0,
             count: 0,
             total: 0,
-            link: "",
+            link: '',
           },
         ],
         graphicsCard: {
-          name: "",
+          name: '',
           price: 0,
-          link: "",
+          link: '',
         },
         powerSupply: {
-          name: "",
+          name: '',
           price: 0,
-          link: "",
+          link: '',
         },
         chassis: {
-          name: "",
+          name: '',
           price: 0,
-          link: "",
+          link: '',
         },
         fan: {
-          name: "",
+          name: '',
           price: 0,
           count: 0,
           total: 0,
-          link: "",
+          link: '',
         },
         total: 0,
         timestramp: 0,
-        datetime: "",
+        datetime: '',
       };
       return;
     }

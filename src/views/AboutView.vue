@@ -7,33 +7,33 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from "@/stores/user";
-import { storeToRefs } from "pinia";
+  import { useUserStore } from '@/stores/user';
+  import { storeToRefs } from 'pinia';
 
-const store = useUserStore();
+  const store = useUserStore();
 
-// 使用pinia的钩子函数才能保持响应式
-const { userInfo } = storeToRefs(store);
+  // 使用pinia的钩子函数才能保持响应式
+  const { userInfo } = storeToRefs(store);
 
-const handleChangeName = () => {
-  // store.changeName("hhhh");
-  store.$patch((state) => {
-    state.userInfo.name = "hhhh";
-  });
-};
+  const handleChangeName = () => {
+    // store.changeName("hhhh");
+    store.$patch(state => {
+      state.userInfo.name = 'hhhh';
+    });
+  };
 </script>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  @media (min-width: 1024px) {
+    .about {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
   }
-}
 </style>
 <style lang="scss" scoped>
-.title {
-  color: #000;
-}
+  .title {
+    color: #000;
+  }
 </style>

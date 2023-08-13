@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+  import { RouterView } from 'vue-router';
 </script>
 
 <template>
@@ -26,8 +26,8 @@ import { RouterView } from "vue-router";
 </template>
 
 <style lang="scss" scoped>
-* {
-  padding: 0;
-  margin: 0;
-}
+  * {
+    padding: 0;
+    margin: 0;
+  }
 </style>

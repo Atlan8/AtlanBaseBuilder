@@ -1,64 +1,64 @@
-import { getAssembleListById } from "@/api/assemble";
-import { ref } from "vue";
+import { getAssembleListById } from '@/api/assemble';
+import { ref } from 'vue';
 
-import type { AssembleInfo } from "../service";
+import type { AssembleInfo } from '../service';
 
 export const useAssembleEdit = () => {
   const formData = ref<AssembleInfo>({
     id: 0,
-    name: "",
-    cpu: { name: "", price: 0, link: "" },
+    name: '',
+    cpu: { name: '', price: 0, link: '' },
     motherboard: {
-      name: "",
+      name: '',
       price: 0,
-      link: "",
+      link: '',
     },
     memory: {
-      name: "",
+      name: '',
       price: 0,
       count: 0,
       total: 0,
-      link: "",
+      link: '',
     },
     radiator: {
-      name: "",
+      name: '',
       price: 0,
-      link: "",
+      link: '',
     },
     hardDiskList: [
       {
-        name: "",
+        name: '',
         price: 0,
         count: 0,
         total: 0,
-        link: "",
+        link: '',
       },
     ],
     graphicsCard: {
-      name: "",
+      name: '',
       price: 0,
-      link: "",
+      link: '',
     },
     powerSupply: {
-      name: "",
+      name: '',
       price: 0,
-      link: "",
+      link: '',
     },
     chassis: {
-      name: "",
+      name: '',
       price: 0,
-      link: "",
+      link: '',
     },
     fan: {
-      name: "",
+      name: '',
       price: 0,
       count: 0,
       total: 0,
-      link: "",
+      link: '',
     },
     total: 0,
     timestramp: 0,
-    datetime: "",
+    datetime: '',
   });
 
   /**
@@ -66,8 +66,8 @@ export const useAssembleEdit = () => {
    * @param params
    */
   const getData = ({ id }: { id: number }) => {
-    getAssembleListById({ id: id }).then((res) => {
-      console.log("--->id: ", res.data.data);
+    getAssembleListById({ id: id }).then(res => {
+      console.log('--->id: ', res.data.data);
       const { data, errorCode } = res.data;
       if (errorCode === 10000) {
         formData.value = data;

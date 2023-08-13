@@ -1,8 +1,8 @@
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { useService, type AssembleInfo } from "../service";
-import { PageEnum } from "@/enum/pageEnum";
-import { ElMessage } from "element-plus";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useService, type AssembleInfo } from '../service';
+import { PageEnum } from '@/enum/pageEnum';
+import { ElMessage } from 'element-plus';
 
 export const useAssemble = () => {
   const { assembleList, searchAssemble } = useService();
@@ -10,7 +10,7 @@ export const useAssemble = () => {
   // 路由跳转时，先获取router对象，跟Vue2的this.$router类似
   const router = useRouter();
 
-  const searchValue = ref("");
+  const searchValue = ref('');
 
   const showInfoDialog = ref(false);
   const assembleInfo = ref<AssembleInfo>();
@@ -36,7 +36,7 @@ export const useAssemble = () => {
     if (isForm) {
       // 非命名路由，使用query传参，命名路由使用params传参
       if (!data) {
-        ElMessage.warning("请传入装机清单！");
+        ElMessage.warning('请传入装机清单！');
         return;
       }
       router.push({

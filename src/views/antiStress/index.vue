@@ -23,26 +23,26 @@ export default defineComponent({
 </script> -->
 
 <script lang="ts" setup>
-import { useService } from "./service";
-import Header from "./components/Header.vue";
-import CommentCell from "./components/CommentCell.vue";
+  import { useService } from './service';
+  import Header from './components/Header.vue';
+  import CommentCell from './components/CommentCell.vue';
 
-const { title, author, comment } = useService();
+  const { title, author, comment } = useService();
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin: 0 auto;
-  width: 64vw;
-  height: 100%;
-  background-color: #f5f5f5;
-  color: #333;
-  padding: 15px;
-}
-
-@media (min-width: 1024px) {
   .container {
-    width: 750px;
+    margin: 0 auto;
+    width: 64vw;
+    height: 100%;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 15px;
   }
-}
+
+  @media (min-width: 1024px) {
+    .container {
+      width: 750px;
+    }
+  }
 </style>

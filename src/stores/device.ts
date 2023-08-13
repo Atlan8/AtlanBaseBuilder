@@ -1,8 +1,8 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
-import { DeviceType } from "./type";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
+import { DeviceType } from './type';
 
-export const useDeviceStore = defineStore("device", {
+export const useDeviceStore = defineStore('device', {
   state: () => {
     // 当前设备类型 手机、平板、PC
     const deviceType = ref<DeviceType>(DeviceType.DESKTOP);

@@ -1,7 +1,7 @@
-import { getAssembleList, getAssembleListById } from "@/api/assemble";
-import { isNumber } from "@/utils/test";
-import { ElMessage } from "element-plus";
-import { onMounted, ref } from "vue";
+import { getAssembleList, getAssembleListById } from '@/api/assemble';
+import { isNumber } from '@/utils/test';
+import { ElMessage } from 'element-plus';
+import { onMounted, ref } from 'vue';
 
 export interface AccessoriesInfo {
   id?: number;
@@ -35,43 +35,43 @@ export interface AssembleInfo {
 export const testAssembleInfo = (data: AssembleInfo): boolean => {
   if (!data) {
     ElMessage({
-      message: "装机表单不能为空",
-      type: "error",
+      message: '装机表单不能为空',
+      type: 'error',
     });
     return false;
   }
   if (!data.name) {
     ElMessage({
-      message: "装机方案名称不能为空",
-      type: "error",
+      message: '装机方案名称不能为空',
+      type: 'error',
     });
     return false;
   }
   if (!data.cpu.name) {
     ElMessage({
-      message: "请输入cpu名称",
-      type: "error",
+      message: '请输入cpu名称',
+      type: 'error',
     });
     return false;
   }
   if (!data.cpu.price) {
     ElMessage({
-      message: "请输入cpu价格",
-      type: "error",
+      message: '请输入cpu价格',
+      type: 'error',
     });
     return false;
   }
   if (!isNumber(data.cpu.price)) {
     ElMessage({
-      message: "cpu价格必须是数字",
-      type: "error",
+      message: 'cpu价格必须是数字',
+      type: 'error',
     });
     return false;
   }
   if (data.cpu.price < 1) {
     ElMessage({
-      message: "请输入正确的cpu价格",
-      type: "error",
+      message: '请输入正确的cpu价格',
+      type: 'error',
     });
     return false;
   }
@@ -82,7 +82,7 @@ export const useService = () => {
   const assembleList = ref<AssembleInfo[]>();
 
   const searchAssemble = (listQuery?: { keyword: string }) => {
-    getAssembleList(listQuery).then((res) => {
+    getAssembleList(listQuery).then(res => {
       const { data, errorCode } = res.data;
       if (errorCode === 10000) {
         assembleList.value = data;

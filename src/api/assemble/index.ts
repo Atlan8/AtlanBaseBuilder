@@ -1,18 +1,16 @@
-import http from "@/utils/http/index";
-import type { ResponseData } from "@/utils/http/type";
-import type { AssembleInfo } from "@/views/assemble/service";
-import type { AxiosResponse } from "axios";
+import http from '@/utils/http/index';
+import type { ResponseData } from '@/utils/http/type';
+import type { AssembleInfo } from '@/views/assemble/service';
+import type { AxiosResponse } from 'axios';
 
 /**
  * 获取所有配置列表
  * @returns
  */
-export const getAssembleList = (data?: {
-  keyword: string;
-}): Promise<AxiosResponse<ResponseData<AssembleInfo[]>>> => {
+export const getAssembleList = (data?: { keyword: string }): Promise<AxiosResponse<ResponseData<AssembleInfo[]>>> => {
   return http({
-    url: "/api/getAssembleList",
-    method: "get",
+    url: '/api/getAssembleList',
+    method: 'get',
     params: data,
   });
 };
@@ -22,14 +20,10 @@ export const getAssembleList = (data?: {
  * @param params
  * @returns
  */
-export const getAssembleListById = ({
-  id,
-}: {
-  id: number;
-}): Promise<AxiosResponse<ResponseData<AssembleInfo>>> => {
+export const getAssembleListById = ({ id }: { id: number }): Promise<AxiosResponse<ResponseData<AssembleInfo>>> => {
   return http({
-    url: "/api/getAssembleListById",
-    method: "get",
+    url: '/api/getAssembleListById',
+    method: 'get',
     params: { id: id },
   });
 };
@@ -41,16 +35,16 @@ export const getAssembleListById = ({
  */
 export const editAssembleInfo = (data: AssembleInfo) => {
   return http({
-    url: "/api/assemble/edit",
-    method: "post",
+    url: '/api/assemble/edit',
+    method: 'post',
     data: data,
   });
 };
 
 export const createAssemble = (data: AssembleInfo) => {
   return http({
-    url: "/api/asemble/create",
-    method: "post",
+    url: '/api/asemble/create',
+    method: 'post',
     data: data,
   });
 };

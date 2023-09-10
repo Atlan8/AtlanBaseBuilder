@@ -1517,5 +1517,5 @@ export const useService = (): PostInfo => {
 };
 
 export const useServiceWen = () => {
-  return ['打中我的不是子弹，是你这个小笨蛋', '我不动，但是忍不住对你的心动', '但使龙城飞将在，come on baby dont be shy', '我网恋受过伤，下田插过秧，为爱跳过黄浦江，想认识你，抚平心里的伤'];
+  return ['打中我的不是子弹，是你这个小笨蛋', '我不动，但是忍不住对你的心动', '但使龙城飞将在，come on baby dont be shy', '我下田插过秧，网恋受过伤，为爱跳过黄浦江，想认识你，抚平心里的伤'];
 };

@@ -102,5 +102,53 @@
     "total": 14945,
     "timestramp": 0,
     "datetime": ""
+  },
+  {
+    "id": 2,
+    "name": "12400f+瑷珈4060ti",
+    "cpu": { "name": "i5 12400F", "price": 863, "link": "" },
+    "motherboard": {
+      "name": "华硕 H610M-A D4",
+      "price": 637,
+      "link": ""
+    },
+    "memory": {
+      "name": "金百达 银爵 3200MHz D4",
+      "price": 102.5,
+      "count": 2,
+      "total": 205,
+      "link": ""
+    },
+    "radiator": { "name": "利民 AK120 SE", "price": 84, "link": "" },
+    "hardDiskList": [
+      {
+        "name": "铠侠 RC20 1T",
+        "price": 329,
+        "count": 1,
+        "total": 329,
+        "link": ""
+      }
+    ],
+    "graphicsCard": {
+      "name": "瑷珈 4060Ti 8G",
+      "price": 3199,
+      "link": ""
+    },
+    "powerSupply": {
+      "name": "鑫谷 GM650 金牌全模组",
+      "price": 399,
+      "link": ""
+    },
+    "chassis": { "name": "爱国者 星璨 岚", "price": 399, "link": "" },
+    "fan": {
+      "name": "玩嘉 棱镜二代",
+      "price": 23,
+      "count": 7,
+      "total": 138,
+      "link": ""
+    },
+    "total": 6168,
+    "timestramp": 0,
+    "datetime": ""
   }
 ]
